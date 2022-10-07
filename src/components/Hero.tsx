@@ -10,7 +10,7 @@ export function Hero({}) {
         <p className="py-6">
           QR codes are a great way to share information with your customers.
         </p>
-        <button className="w-36 rounded-md bg-blue-900 p-2">Get Started</button>
+        <button className="w-36 rounded-md bg-blue-700 p-2">Get Started</button>
       </div>
 
       <div className="relative h-full w-5/12">
