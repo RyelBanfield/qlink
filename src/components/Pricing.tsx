@@ -1,19 +1,20 @@
 export function Pricing({}) {
   return (
-    <section className="py-20 dark:bg-gray-800 dark:text-gray-100">
-      <div className="container mx-auto px-4">
-        <div className="mx-auto mb-16 max-w-2xl text-center">
-          <span className="font-bold uppercase tracking-wider dark:text-violet-400">
+    <section className="rounded-md bg-neutral-100 px-6 py-12">
+      <div className="">
+        <div className="mx-auto mb-12 text-center">
+          <span className="font-bold uppercase tracking-wider text-blue-700">
             Pricing
           </span>
-          <h2 className="text-4xl font-bold lg:text-5xl">
+          <h2 className="text-3xl font-bold text-neutral-900">
             Choose your best plan
           </h2>
         </div>
-        <div className="-mx-4 flex flex-wrap items-stretch">
-          <div className="mb-8 flex w-full sm:px-4 md:w-1/2 lg:mb-0 lg:w-1/3">
-            <div className="flex flex-col space-y-6 rounded p-6 shadow dark:bg-gray-900 sm:p-8">
-              <div className="space-y-2">
+
+        <div className="flex flex-wrap">
+          <div className="mx-auto flex justify-center p-3 md:w-1/2">
+            <div className="flex flex-col space-y-6 rounded-md bg-gray-900 p-6 shadow-lg ">
+              <div className="">
                 <h4 className="text-2xl font-bold">Beginner</h4>
                 <span className="text-6xl font-bold">Free</span>
               </div>
@@ -26,7 +27,7 @@ export function Pricing({}) {
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
-                    className="h-6 w-6 flex-shrink-0 dark:text-violet-400"
+                    className="h-6 w-6 flex-shrink-0 text-blue-700"
                   >
                     <path
                       fillRule="evenodd"
@@ -41,7 +42,7 @@ export function Pricing({}) {
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
-                    className="h-6 w-6 flex-shrink-0 dark:text-violet-400"
+                    className="h-6 w-6 flex-shrink-0 text-blue-700"
                   >
                     <path
                       fillRule="evenodd"
@@ -56,7 +57,7 @@ export function Pricing({}) {
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
-                    className="h-6 w-6 flex-shrink-0 dark:text-violet-400"
+                    className="h-6 w-6 flex-shrink-0 text-blue-700"
                   >
                     <path
                       fillRule="evenodd"
@@ -69,14 +70,15 @@ export function Pricing({}) {
               </ul>
               <button
                 type="button"
-                className="inline-block rounded px-5 py-3 text-center font-semibold tracking-wider dark:bg-violet-400 dark:text-gray-900"
+                className="inline-block rounded bg-blue-700 px-5 py-3 text-center font-semibold tracking-wider"
               >
                 Get Started
               </button>
             </div>
           </div>
-          <div className="mb-8 flex w-full sm:px-4 md:w-1/2 lg:mb-0 lg:w-1/3">
-            <div className="flex flex-col space-y-6 rounded p-6 shadow dark:bg-violet-400 dark:text-gray-900 sm:p-8">
+
+          <div className="mx-auto flex justify-center p-3 md:w-1/2">
+            <div className="flex flex-col space-y-6 rounded bg-blue-700 p-6 shadow">
               <div className="space-y-2">
                 <h4 className="text-2xl font-bold">Pro</h4>
                 <span className="text-6xl font-bold">
@@ -152,105 +154,7 @@ export function Pricing({}) {
               <a
                 rel="noopener noreferrer"
                 href="#"
-                className="inline-block w-full rounded px-5 py-3 text-center font-bold tracking-wider dark:bg-gray-800 dark:text-violet-400"
-              >
-                Get Started
-              </a>
-            </div>
-          </div>
-          <div className="mb-8 w-full sm:px-4 md:w-1/2 lg:mb-0 lg:w-1/3">
-            <div className="space-y-6 rounded p-6 shadow dark:bg-gray-900 sm:p-8">
-              <div className="space-y-2">
-                <h4 className="text-2xl font-bold">Team</h4>
-                <span className="text-6xl font-bold">
-                  $72
-                  <span className="text-sm tracking-wide">/month</span>
-                </span>
-              </div>
-              <p className="leading-relaxed dark:text-gray-400">
-                Phasellus ultrices bibendum nibh in vehicula.
-              </p>
-              <ul className="space-y-2 dark:text-gray-400">
-                <li className="flex items-start space-x-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="h-6 w-6 flex-shrink-0 dark:text-violet-400"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span>Everything in Pro</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="h-6 w-6 flex-shrink-0 dark:text-violet-400"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span>Fusce sem ligula</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="h-6 w-6 flex-shrink-0 dark:text-violet-400"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span>Curabitur dictum</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="h-6 w-6 flex-shrink-0 dark:text-violet-400"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span>Duis odio eros</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                    className="h-6 w-6 flex-shrink-0 dark:text-violet-400"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    ></path>
-                  </svg>
-                  <span>Vivamus ut lectus ex</span>
-                </li>
-              </ul>
-              <a
-                rel="noopener noreferrer"
-                href="#"
-                className="inline-block w-full rounded px-5 py-3 text-center font-semibold tracking-wider dark:bg-violet-400 dark:text-gray-900"
+                className="inline-block w-full rounded bg-neutral-900 px-5 py-3 text-center font-bold tracking-wider"
               >
                 Get Started
               </a>
