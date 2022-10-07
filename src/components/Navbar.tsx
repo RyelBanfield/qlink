@@ -1,14 +1,19 @@
+import Link from "next/link";
+
 import { LoginBtn } from "./LoginBtn";
 
 export function Navbar({}) {
   return (
-    <div className="navbar bg-base-100">
-      <div className="navbar-start">
-        <a className="btn btn-ghost text-xl normal-case">QR Code Generator</a>
+    <nav className="flex h-16 items-center justify-between">
+      <div className="">
+        <Link href="/">
+          <a className="text-xl font-semibold">QR Code Now</a>
+        </Link>
       </div>
-      <div className="navbar-end">
+
+      <div className="">
         <LoginBtn />
       </div>
-    </div>
+    </nav>
   );
 }

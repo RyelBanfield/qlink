@@ -10,13 +10,15 @@ export function LoginBtn({}) {
   if (session) {
     return (
       <>
-        <button onClick={() => signOut()}>Sign out</button>
+        <button onClick={() => signOut()} className="">
+          Sign out
+        </button>
       </>
     );
   }
   return (
     <>
-      <button onClick={() => signIn("google")} className="btn">
+      <button onClick={() => signIn("google")} className="">
         Sign in
       </button>
     </>
