@@ -2,11 +2,11 @@ export function Pricing({}) {
   return (
     <section className="mb-12 rounded-md bg-neutral-100 px-6 py-12">
       <div>
-        <div className="mx-auto mb-12 text-center">
+        <div className="mx-auto mb-10 text-center">
           <span className="font-bold uppercase tracking-wider text-blue-700">
             Pricing
           </span>
-          <h2 className="text-3xl font-bold text-neutral-900">
+          <h2 className="mt-2 text-3xl font-bold leading-none text-neutral-900 sm:text-3xl">
             Choose your best plan
           </h2>
         </div>

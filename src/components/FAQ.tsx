@@ -2,11 +2,11 @@ export function FAQ({}) {
   return (
     <section className="mb-6 rounded-md bg-neutral-100 px-6 py-12 text-gray-900">
       <div className="mx-auto flex flex-col justify-center p-4 md:p-8">
-        <div className="mx-auto mb-12 text-center">
+        <div className="mx-auto mb-10 text-center">
           <span className="font-bold uppercase tracking-wider text-blue-700">
             How it works
           </span>
-          <h2 className="text-2xl font-bold sm:text-3xl">
+          <h2 className="mt-2 text-2xl font-bold leading-none sm:text-3xl">
             Frequently Asked Questions
           </h2>
         </div>
