@@ -1,7 +1,7 @@
 export function Pricing({}) {
   return (
-    <section className="rounded-md bg-neutral-100 px-6 py-12">
-      <div className="">
+    <section className="mb-12 rounded-md bg-neutral-100 px-6 py-12">
+      <div>
         <div className="mx-auto mb-12 text-center">
           <span className="font-bold uppercase tracking-wider text-blue-700">
             Pricing
