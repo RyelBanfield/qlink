@@ -7,7 +7,7 @@ export function Navbar({}) {
     <nav className="flex h-16 items-center justify-between">
       <div className="">
         <Link href="/">
-          <a className="text-xl font-semibold">QR Code Now</a>
+          <a className="text-xl font-semibold">QLink</a>
         </Link>
       </div>
 
