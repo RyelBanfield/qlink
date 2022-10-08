@@ -12,10 +12,10 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>QR Code Now</title>
+        <title>QLink</title>
         <meta
           name="description"
-          content="Create your own QR codes to boost your business or idea."
+          content="Create your own QR codes & websites to boost your business or idea."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
