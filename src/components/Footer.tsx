@@ -1,7 +1,9 @@
 export function Footer({}) {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="py-6 text-center">
-      <p>Copyright © 2022 - All right reserved by RCB Software LLC</p>
+    <footer className="py-6 text-center text-sm">
+      <p>Copyright © {year} - All right reserved by RCB Software LLC</p>
     </footer>
   );
 }
