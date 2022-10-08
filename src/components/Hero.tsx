@@ -16,7 +16,7 @@ export function Hero({}) {
       <div className="relative h-full w-5/12">
         <Image
           src="/hero.jpeg"
-          alt="A woman holding a phone with a QR code on the screen"
+          alt="A woman scanning a QR code"
           fill
           className="rounded object-cover"
         />
