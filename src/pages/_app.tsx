@@ -5,10 +5,13 @@ import { httpBatchLink } from "@trpc/client/links/httpBatchLink";
 import { loggerLink } from "@trpc/client/links/loggerLink";
 import { withTRPC } from "@trpc/next";
 import type { AppType } from "next/app";
+import Head from "next/head";
 import type { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import superjson from "superjson";
 
+import { Footer } from "../components/Footer";
+import { Navbar } from "../components/Navbar";
 import type { AppRouter } from "../server/router";
 
 const MyApp: AppType<{ session: Session | null }> = ({
@@ -17,8 +20,19 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
+      <Head>
+        <title>QLink</title>
+        <meta
+          name="description"
+          content="Create your own QR codes & websites to boost your business or idea."
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <main className="m-auto flex min-h-screen max-w-5xl flex-col px-6 sm:px-8 md:px-12">
+        <Navbar />
         <Component {...pageProps} />
+        <Footer />
       </main>
     </SessionProvider>
   );
