@@ -27,14 +27,12 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="m-auto flex min-h-screen max-w-5xl flex-col px-6 sm:px-8 md:px-12">
-        <Navbar />
-        <Hero />
-        <Features />
-        <Pricing />
-        <FAQ />
-        <Footer />
-      </main>
+      <Navbar />
+      <Hero />
+      <Features />
+      <Pricing />
+      <FAQ />
+      <Footer />
     </>
   );
 };

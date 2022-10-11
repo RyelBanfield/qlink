@@ -1,7 +1,8 @@
+import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 
-export default function Custom404() {
+const Custom404: NextPage = () => {
   return (
     <>
       <Head>
@@ -10,7 +11,7 @@ export default function Custom404() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="m-auto flex min-h-screen max-w-5xl flex-grow flex-col items-center justify-center px-6 sm:px-8 md:px-12">
+      <div className="flex flex-grow flex-col items-center justify-center">
         <h2 className="mb-8 text-6xl font-extrabold">404</h2>
         <p className="mb-8 text-2xl font-semibold md:text-3xl">
           Sorry, we couldn&apos;t find this page.
@@ -20,7 +21,9 @@ export default function Custom404() {
             Back to homepage
           </a>
         </Link>
-      </main>
+      </div>
     </>
   );
-}
+};
+
+export default Custom404;
