@@ -21,6 +21,7 @@ function Feature({ text }: { text: string }) {
 function Plan({
   name,
   price,
+  monthly,
   description,
   features,
   bgColor,
@@ -28,6 +29,7 @@ function Plan({
 }: {
   name: string;
   price: string;
+  monthly: boolean;
   description: string;
   features: string[];
   bgColor: string;
@@ -43,7 +45,7 @@ function Plan({
           <h4 className="text-2xl font-bold">{name}</h4>
           <span className="text-6xl font-bold">
             {price}
-            {price === "Free" ? (
+            {monthly === false ? (
               ""
             ) : (
               <span className="text-sm tracking-wide">/month</span>
@@ -80,7 +82,8 @@ export function Pricing({}) {
         <div className="flex flex-wrap">
           <Plan
             name="Beginner"
-            price="Free"
+            price="$5"
+            monthly={false}
             description="Just getting started?"
             features={["QR Code Generator"]}
             bgColor="bg-gray-900"
@@ -88,7 +91,8 @@ export function Pricing({}) {
           />
           <Plan
             name="Starter"
-            price="$9"
+            price="$15"
+            monthly={true}
             description="For those that need more features."
             features={["QR Code Generator", "Website Builder & Hosting"]}
             bgColor="bg-blue-700"
@@ -96,8 +100,9 @@ export function Pricing({}) {
           />
           <Plan
             name="Pro"
-            price="$19"
-            description="For those that need more features."
+            price="$30"
+            monthly={true}
+            description="For the entrepreneurs."
             features={[
               "QR Code Generator",
               "Website Builder & Hosting",
