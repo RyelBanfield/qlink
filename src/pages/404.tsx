@@ -17,7 +17,7 @@ const Custom404: NextPage = () => {
           Sorry, we couldn&apos;t find this page.
         </p>
         <Link href="/">
-          <a className="w-40 rounded-md bg-blue-700 p-2 text-center">
+          <a className="w-40 rounded bg-blue-700 p-2 text-center">
             Back to homepage
           </a>
         </Link>
