@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function Feature({ text }: { text: string }) {
   return (
     <li className="flex items-center space-x-2">
@@ -24,6 +26,7 @@ function Plan({
   monthly,
   description,
   features,
+  href,
   bgColor,
   buttonColor,
 }: {
@@ -32,6 +35,7 @@ function Plan({
   monthly: boolean;
   description: string;
   features: string[];
+  href: string;
   bgColor: string;
   buttonColor: string;
 }) {
@@ -58,9 +62,9 @@ function Plan({
             <Feature key={feature} text={feature} />
           ))}
         </ul>
-        <button type="button" className={buttonClasses}>
-          Get Started
-        </button>
+        <Link href={href}>
+          <a className={buttonClasses}>Get Started</a>
+        </Link>
       </div>
     </div>
   );
@@ -86,6 +90,7 @@ export function Pricing({}) {
             monthly={false}
             description="Just getting started?"
             features={["QR Code Generator"]}
+            href="/plans/beginner"
             bgColor="bg-gray-900"
             buttonColor="bg-blue-700"
           />
@@ -95,6 +100,7 @@ export function Pricing({}) {
             monthly={true}
             description="For those that need more features."
             features={["QR Code Generator", "Website Builder & Hosting"]}
+            href="/plans/starter"
             bgColor="bg-blue-700"
             buttonColor="bg-gray-900"
           />
@@ -108,6 +114,7 @@ export function Pricing({}) {
               "Website Builder & Hosting",
               "Associate Features",
             ]}
+            href="/plans/pro"
             bgColor="bg-gray-900"
             buttonColor="bg-blue-700"
           />
