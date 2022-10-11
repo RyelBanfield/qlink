@@ -25,8 +25,11 @@ export const authOptions: NextAuthOptions = {
     // ...add more providers here
   ],
   adapter: PrismaAdapter(prisma),
-  secret: env.JWT_SECRET,
+  secret: env.NEXTAUTH_SECRET,
   // debug: env.NODE_ENV === "development",
+  pages: {
+    signIn: "/auth/signin",
+  },
 };
 
 export default NextAuth(authOptions);

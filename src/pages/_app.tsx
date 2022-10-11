@@ -1,4 +1,3 @@
-// src/pages/_app.tsx
 import "../styles/globals.css";
 
 import { httpBatchLink } from "@trpc/client/links/httpBatchLink";
@@ -29,11 +28,11 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="m-auto flex min-h-screen max-w-5xl flex-col px-6 sm:px-8 md:px-12">
-        <Navbar />
+      <Navbar />
+      <main className="m-auto flex max-w-5xl flex-grow flex-col px-6 sm:px-8 md:px-12">
         <Component {...pageProps} />
-        <Footer />
       </main>
+      <Footer />
     </SessionProvider>
   );
 };

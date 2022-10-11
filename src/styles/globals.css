@@ -8,3 +8,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+#__next {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
