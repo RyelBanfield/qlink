@@ -1,4 +1,5 @@
 import Image from "next/future/image";
+import Link from "next/link";
 
 export function Hero({}) {
   return (
@@ -10,7 +11,11 @@ export function Hero({}) {
         <p className="py-6">
           QR codes are a great way to share information with your customers.
         </p>
-        <button className="w-36 rounded-md bg-blue-700 p-2">Get Started</button>
+        <Link href="/plans/beginner">
+          <a className="inline-block w-36 rounded bg-blue-700 p-2 text-center font-bold">
+            Get Started
+          </a>
+        </Link>
       </div>
 
       <div className="relative h-full w-5/12">
