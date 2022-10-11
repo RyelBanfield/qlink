@@ -18,6 +18,8 @@ export function Hero({}) {
           src="/hero.jpeg"
           alt="A woman scanning a QR code"
           fill
+          priority={true}
+          sizes="50vw"
           className="rounded object-cover"
         />
       </div>
