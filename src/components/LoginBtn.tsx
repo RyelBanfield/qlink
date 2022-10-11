@@ -1,4 +1,5 @@
-import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
+import { signOut, useSession } from "next-auth/react";
 
 export function LoginBtn({}) {
   const { data: session, status } = useSession();
@@ -18,9 +19,9 @@ export function LoginBtn({}) {
   }
   return (
     <>
-      <button onClick={() => signIn("google")} className="">
-        Sign in
-      </button>
+      <Link href="/auth/signin">
+        <a className="font-semibold">Sign in</a>
+      </Link>
     </>
   );
 }
