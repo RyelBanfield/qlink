@@ -28,19 +28,15 @@ const SignIn = ({
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  try {
-    const session = await getSession(context);
+  const session = await getSession(context);
 
-    if (session) {
-      return {
-        redirect: {
-          destination: "/dashboard",
-          permanent: false,
-        },
-      };
-    }
-  } catch (error) {
-    console.log(error);
+  if (session) {
+    return {
+      redirect: {
+        destination: "/dashboard",
+        permanent: false,
+      },
+    };
   }
 
   const providers = await getProviders();
