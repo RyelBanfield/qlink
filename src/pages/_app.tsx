@@ -9,7 +9,6 @@ import type { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import superjson from "superjson";
 
-import { Footer } from "../components/Footer";
 import { Navbar } from "../components/Navbar";
 import type { AppRouter } from "../server/router";
 
@@ -32,7 +31,6 @@ const MyApp: AppType<{ session: Session | null }> = ({
       <main className="m-auto flex max-w-5xl flex-grow flex-col px-6 sm:px-8 md:px-12">
         <Component {...pageProps} />
       </main>
-      <Footer />
     </SessionProvider>
   );
 };

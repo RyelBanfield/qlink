@@ -29,6 +29,7 @@ function Plan({
   href,
   bgColor,
   buttonColor,
+  buttonText,
 }: {
   name: string;
   price: string;
@@ -38,6 +39,7 @@ function Plan({
   href: string;
   bgColor: string;
   buttonColor: string;
+  buttonText: string;
 }) {
   const cardClasses = `flex w-full flex-col space-y-6 rounded-md p-6 shadow-lg ${bgColor}`;
   const buttonClasses = `inline-block w-full rounded px-5 py-3 text-center font-bold tracking-wider ${buttonColor}`;
@@ -63,7 +65,7 @@ function Plan({
           ))}
         </ul>
         <Link href={href}>
-          <a className={buttonClasses}>Get Started</a>
+          <a className={buttonClasses}>{buttonText}</a>
         </Link>
       </div>
     </div>
@@ -89,34 +91,33 @@ export function Pricing({}) {
             price="$5"
             monthly={false}
             description="Just getting started?"
-            features={["QR Code Generator"]}
+            features={["1 QR Code"]}
             href="/plans/beginner"
             bgColor="bg-gray-900"
             buttonColor="bg-blue-700"
+            buttonText="Get Started"
           />
           <Plan
             name="Starter"
-            price="$15"
+            price="$25"
             monthly={true}
-            description="For those that need more features."
-            features={["QR Code Generator", "Website Builder & Hosting"]}
-            href="/plans/starter"
+            description="For those that need more."
+            features={["Unlimited QR Codes", "1 QLink Website"]}
+            href="/"
             bgColor="bg-blue-700"
             buttonColor="bg-gray-900"
+            buttonText="Coming Soon"
           />
           <Plan
             name="Pro"
-            price="$30"
+            price="$50"
             monthly={true}
             description="For the entrepreneurs."
-            features={[
-              "QR Code Generator",
-              "Website Builder & Hosting",
-              "Associate Features",
-            ]}
-            href="/plans/pro"
+            features={["Unlimited QR Codes", "Unlimited QLink Websites"]}
+            href="/"
             bgColor="bg-gray-900"
             buttonColor="bg-blue-700"
+            buttonText="Coming Soon"
           />
         </div>
       </div>
