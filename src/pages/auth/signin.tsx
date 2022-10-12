@@ -29,6 +29,7 @@ const SignIn = ({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);
+  const providers = await getProviders();
 
   if (session) {
     return {
@@ -38,8 +39,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     };
   }
-
-  const providers = await getProviders();
 
   return {
     props: { providers, session },
