@@ -1,6 +1,4 @@
-import Link from "next/link";
-
-function Feature({ text }: { text: string }) {
+const Feature = ({ text }: { text: string }) => {
   return (
     <li className="flex items-center space-x-2">
       <svg
@@ -18,34 +16,27 @@ function Feature({ text }: { text: string }) {
       <span>{text}</span>
     </li>
   );
-}
+};
 
-function Plan({
+const Plan = ({
   name,
   price,
   monthly,
   description,
   features,
-  href,
   bgColor,
-  buttonColor,
-  buttonText,
 }: {
   name: string;
   price: string;
   monthly: boolean;
   description: string;
   features: string[];
-  href: string;
   bgColor: string;
-  buttonColor: string;
-  buttonText: string;
-}) {
+}) => {
   const cardClasses = `flex w-full flex-col space-y-6 rounded-md p-6 shadow-lg ${bgColor}`;
-  const buttonClasses = `inline-block w-full rounded px-5 py-3 text-center font-bold tracking-wider ${buttonColor}`;
 
   return (
-    <div className="flex w-full p-3 md:w-1/2 lg:w-1/3">
+    <div className="flex h-80 w-full p-3 md:w-1/2 lg:w-1/3">
       <div className={cardClasses}>
         <div>
           <h4 className="text-2xl font-bold">{name}</h4>
@@ -64,15 +55,12 @@ function Plan({
             <Feature key={feature} text={feature} />
           ))}
         </ul>
-        <Link href={href}>
-          <a className={buttonClasses}>{buttonText}</a>
-        </Link>
       </div>
     </div>
   );
-}
+};
 
-export function Pricing({}) {
+const Pricing = ({}) => {
   return (
     <section className="mb-12 rounded-md bg-neutral-100 px-6 py-12">
       <div>
@@ -92,10 +80,7 @@ export function Pricing({}) {
             monthly={false}
             description="Just getting started?"
             features={["1 QR Code"]}
-            href="/plans/beginner"
             bgColor="bg-gray-900"
-            buttonColor="bg-blue-700"
-            buttonText="Get Started"
           />
           <Plan
             name="Starter"
@@ -103,10 +88,7 @@ export function Pricing({}) {
             monthly={true}
             description="For those that need more."
             features={["Unlimited QR Codes", "1 QLink Website"]}
-            href="/"
             bgColor="bg-blue-700"
-            buttonColor="bg-gray-900"
-            buttonText="Coming Soon"
           />
           <Plan
             name="Pro"
@@ -114,13 +96,12 @@ export function Pricing({}) {
             monthly={true}
             description="For the entrepreneurs."
             features={["Unlimited QR Codes", "Unlimited QLink Websites"]}
-            href="/"
             bgColor="bg-gray-900"
-            buttonColor="bg-blue-700"
-            buttonText="Coming Soon"
           />
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default Pricing;
