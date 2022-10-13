@@ -31,7 +31,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
       </Head>
 
       <Navbar />
-      <main className="mx-auto flex max-w-5xl flex-grow flex-col px-6 sm:px-8 md:px-12">
+      <main className="mx-auto flex w-full max-w-5xl flex-grow flex-col px-6 sm:px-8 md:px-12">
         <Component {...pageProps} />
       </main>
       {router.pathname === "/" && <Footer />}
