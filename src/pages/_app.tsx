@@ -5,17 +5,20 @@ import { loggerLink } from "@trpc/client/links/loggerLink";
 import { withTRPC } from "@trpc/next";
 import type { AppType } from "next/app";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import type { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import superjson from "superjson";
 
-import { Navbar } from "../components/Navbar";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
 import type { AppRouter } from "../server/router";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps: { session, ...pageProps },
 }) => {
+  const router = useRouter();
   return (
     <SessionProvider session={session}>
       <Head>
@@ -28,9 +31,10 @@ const MyApp: AppType<{ session: Session | null }> = ({
       </Head>
 
       <Navbar />
-      <main className="m-auto flex max-w-5xl flex-grow flex-col px-6 sm:px-8 md:px-12">
+      <main className="mx-auto flex max-w-5xl flex-grow flex-col px-6 sm:px-8 md:px-12">
         <Component {...pageProps} />
       </main>
+      {router.pathname === "/" && <Footer />}
     </SessionProvider>
   );
 };

@@ -1,4 +1,4 @@
-export function Footer({}) {
+const Footer = ({}) => {
   const year = new Date().getFullYear();
 
   return (
@@ -6,4 +6,6 @@ export function Footer({}) {
       <p>Copyright © {year} - All right reserved by RCB Software LLC</p>
     </footer>
   );
-}
+};
+
+export default Footer;

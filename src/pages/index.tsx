@@ -1,11 +1,10 @@
 import { GetServerSideProps, NextPage } from "next";
 import { getSession } from "next-auth/react";
 
-import { FAQ } from "../components/FAQ";
-import { Features } from "../components/Features";
-import { Footer } from "../components/Footer";
-import { Pricing } from "../components/Pricing";
-import { Hero } from "./../components/Hero";
+import FAQ from "../components/FAQ";
+import Features from "../components/Features";
+import Pricing from "../components/Pricing";
+import Hero from "./../components/Hero";
 
 const Home: NextPage = () => {
   return (
@@ -14,7 +13,6 @@ const Home: NextPage = () => {
       <Features />
       <Pricing />
       <FAQ />
-      <Footer />
     </>
   );
 };

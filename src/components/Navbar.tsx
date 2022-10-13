@@ -1,15 +1,17 @@
 import Link from "next/link";
 
-import { LoginBtn } from "./LoginBtn";
+import AuthButton from "./AuthButton";
 
-export function Navbar({}) {
+const Navbar = ({}) => {
   return (
     <nav className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-6 sm:px-8 md:px-12">
       <Link href="/">
         <a className="text-xl font-semibold">QLink</a>
       </Link>
 
-      <LoginBtn />
+      <AuthButton />
     </nav>
   );
-}
+};
+
+export default Navbar;

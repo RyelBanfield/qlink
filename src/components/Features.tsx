@@ -1,4 +1,4 @@
-function Item({ text }: { text: string }) {
+const Item = ({ text }: { text: string }) => {
   return (
     <li className="flex space-x-2">
       <div className="flex-shrink-0">
@@ -14,9 +14,9 @@ function Item({ text }: { text: string }) {
       <span className="text-sm">{text}</span>
     </li>
   );
-}
+};
 
-export function Features({}) {
+const Features = ({}) => {
   return (
     <section className="mb-12 flex h-min flex-col rounded-md bg-neutral-100 px-6 py-12 text-neutral-900">
       <h2 className="mb-8 text-center text-3xl font-bold leading-none sm:text-3xl">
@@ -29,4 +29,6 @@ export function Features({}) {
       </ul>
     </section>
   );
-}
+};
+
+export default Features;

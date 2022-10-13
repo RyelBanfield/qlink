@@ -1,4 +1,4 @@
-export function FAQ({}) {
+const FAQ = ({}) => {
   return (
     <section className="mb-6 rounded-md bg-neutral-100 px-6 py-12 text-gray-900">
       <div className="mx-auto flex flex-col justify-center p-4 md:p-8">
@@ -63,4 +63,6 @@ export function FAQ({}) {
       </div>
     </section>
   );
-}
+};
+
+export default FAQ;

@@ -1,7 +1,7 @@
 import Image from "next/future/image";
-import Link from "next/link";
+import { signIn } from "next-auth/react";
 
-export function Hero({}) {
+const Hero = ({}) => {
   return (
     <div className="flex h-96 items-center justify-between py-12">
       <div className="w-6/12">
@@ -11,11 +11,12 @@ export function Hero({}) {
         <p className="py-6">
           QR codes are a great way to share information with your customers.
         </p>
-        <Link href="/auth/signin">
-          <a className="inline-block w-36 rounded bg-blue-700 p-2 text-center font-bold">
-            Get Started
-          </a>
-        </Link>
+        <button
+          onClick={() => signIn("google")}
+          className="inline-block w-48 rounded bg-blue-700 p-2 text-center font-bold"
+        >
+          Sign up with Google
+        </button>
       </div>
 
       <div className="relative h-full w-5/12">
@@ -30,4 +31,6 @@ export function Hero({}) {
       </div>
     </div>
   );
-}
+};
+
+export default Hero;
