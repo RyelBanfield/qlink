@@ -1,4 +1,3 @@
-// Prisma adapter for NextAuth, optional and can be removed
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import NextAuth, { type NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
@@ -22,14 +21,10 @@ export const authOptions: NextAuthOptions = {
       clientId: env.GOOGLE_CLIENT_ID,
       clientSecret: env.GOOGLE_CLIENT_SECRET,
     }),
-    // ...add more providers here
   ],
   adapter: PrismaAdapter(prisma),
   secret: env.NEXTAUTH_SECRET,
   // debug: env.NODE_ENV === "development",
-  pages: {
-    signIn: "/auth/signin",
-  },
 };
 
 export default NextAuth(authOptions);
