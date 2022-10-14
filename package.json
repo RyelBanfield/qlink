@@ -21,7 +21,6 @@
     "next-auth": "^4.10.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-hook-form": "^7.37.0",
     "react-query": "^3.39.2",
     "stripe": "^10.13.0",
     "superjson": "^1.10.0",
