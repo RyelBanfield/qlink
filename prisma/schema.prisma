@@ -54,6 +54,8 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+    credits       Int       @default(0)
+    plan          String    @default("beginner")
 }
 
 model VerificationToken {
