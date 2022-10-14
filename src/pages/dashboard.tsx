@@ -14,7 +14,7 @@ const Dashboard = ({ user }: Props) => {
         </h2>
         {user.credits === 0 && (
           <form
-            action="/api/checkout_sessions"
+            action="/api/checkout/credits"
             method="POST"
             className="flex flex-col items-center"
           >
