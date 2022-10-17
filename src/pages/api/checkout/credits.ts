@@ -5,10 +5,7 @@ import { env } from "../../../env/server.mjs";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const stripe = require("stripe")(env.STRIPE_SECRET_KEY);
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     console.log("req.body", req.body);
     try {
@@ -19,7 +16,7 @@ export default async function handler(
             adjustable_quantity: {
               enabled: true,
               minimum: 1,
-              maximum: 10,
+              maximum: 5,
             },
             quantity: 1,
           },
@@ -38,4 +35,6 @@ export default async function handler(
     res.setHeader("Allow", "POST");
     res.status(405).end("Method Not Allowed");
   }
-}
+};
+
+export default handler;

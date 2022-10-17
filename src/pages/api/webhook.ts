@@ -6,7 +6,6 @@ import { env } from "../../env/server.mjs";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const stripe = require("stripe")(env.STRIPE_SECRET_KEY);
-
 const webhookSecret = env.STRIPE_WEBHOOK_SECRET;
 
 const prisma = new PrismaClient();
