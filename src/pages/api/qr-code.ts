@@ -1,34 +1,39 @@
+import { User } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
+import QRCode from "qrcode";
 
-import { getServerAuthSession } from "../../server/common/get-server-auth-session";
 import { prisma } from "../../server/db/client";
 
 const credits = async (req: NextApiRequest, res: NextApiResponse) => {
-  const session = await getServerAuthSession({ req, res });
+  if (req.method === "POST") {
+    const user = req.body.user as User;
 
-  if (session) {
-    const user = await prisma.user.findUnique({
-      where: {
-        id: req.body.userId,
-      },
-    });
+    const { requestedURL } = req.body;
 
-    if (user) {
+    const options = {
+      margin: 1,
+      width: 300,
+    };
+
+    QRCode.toDataURL(requestedURL, options, async (err, url) => {
+      if (err) res.status(500).json({ error: err });
+
       await prisma.user.update({
         where: {
           id: user.id,
         },
         data: {
           credits: {
-            decrement: req.body.creditsUsed,
+            decrement: 1,
           },
         },
       });
-    }
 
-    res.status(200).json({ message: "Credits updated" });
+      res.status(200).json({ url });
+    });
   } else {
-    res.status(401).json({ message: "Unauthorized" });
+    res.setHeader("Allow", "POST");
+    res.status(405).end("Method Not Allowed");
   }
 };
 

@@ -1,4 +1,3 @@
-import { PrismaClient } from "@prisma/client";
 import { buffer } from "micro";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -8,7 +7,7 @@ import { env } from "../../env/server.mjs";
 const stripe = require("stripe")(env.STRIPE_SECRET_KEY);
 const webhookSecret = env.STRIPE_WEBHOOK_SECRET;
 
-const prisma = new PrismaClient();
+import { prisma } from "../../server/db/client";
 
 export const config = {
   api: {
@@ -55,6 +54,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
               },
             },
           });
+
+          console.log(
+            "Credits of user: " + user.email + " have been incremented"
+          );
+        } else {
+          console.log(
+            "User with email: " + session.customer_details.email + " not found"
+          );
         }
         break;
       }
