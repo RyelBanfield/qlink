@@ -1,9 +1,8 @@
 import { User } from "@prisma/client";
 import axios from "axios";
 import { GetServerSideProps } from "next";
-import Image from "next/future/image";
+import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
-import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { prisma } from "../server/db/client";
@@ -11,7 +10,7 @@ import { prisma } from "../server/db/client";
 type Inputs = { name: string; link: string };
 
 const Creator = ({ user }: { user: User }) => {
-  const [qrCode, setQrCode] = useState<{ url: string } | null>(null);
+  const router = useRouter();
   const { register, handleSubmit } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
@@ -22,7 +21,7 @@ const Creator = ({ user }: { user: User }) => {
         link: data.link,
       })
       .then((res) => {
-        setQrCode(res.data);
+        router.push(`/qr-codes/${res.data.id}`);
       })
       .catch((err) => console.log(err));
   };
@@ -47,16 +46,6 @@ const Creator = ({ user }: { user: User }) => {
           Generate QR Code
         </button>
       </form>
-      {qrCode && (
-        <div className="relative m-auto flex h-64 w-64 items-center justify-center">
-          <Image
-            src={qrCode.url}
-            alt="QR Code"
-            fill
-            className="my-3 rounded-md border-2 border-gray-300"
-          />
-        </div>
-      )}
     </div>
   );
 };
@@ -64,7 +53,7 @@ const Creator = ({ user }: { user: User }) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);
 
-  if (!session) {
+  if (!session || !session.user) {
     return {
       redirect: {
         destination: "/",
@@ -75,11 +64,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const user = await prisma.user.findUnique({
     where: {
-      id: session.user?.id,
+      id: session.user.id,
     },
   });
 
-  if (user?.credits === 0) {
+  if (user && user.credits === 0) {
     return {
       redirect: {
         destination: "/",
