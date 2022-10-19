@@ -8,7 +8,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import { prisma } from "../server/db/client";
 
-type Inputs = { requestedURL: string };
+type Inputs = { name: string; link: string };
 
 const Creator = ({ user }: { user: User }) => {
   const [qrCode, setQrCode] = useState<{ url: string } | null>(null);
@@ -18,7 +18,8 @@ const Creator = ({ user }: { user: User }) => {
     axios
       .post("/api/qr-code", {
         user,
-        requestedURL: data.requestedURL,
+        name: data.name,
+        link: data.link,
       })
       .then((res) => {
         setQrCode(res.data);
@@ -28,15 +29,21 @@ const Creator = ({ user }: { user: User }) => {
 
   return (
     <div>
-      <h1>QR Code Creator</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
         <input
-          defaultValue="https://ryelbanfield.me/"
-          placeholder="URL"
-          {...register("requestedURL", { required: true })}
+          placeholder="Enter Name of QR Code"
+          {...register("name", { required: true })}
           className="my-2 rounded-md border-2 border-gray-300 p-2 text-neutral-900"
         />
-        <button type="submit" className="rounded-md bg-blue-700 p-2 text-white">
+        <input
+          placeholder="Enter Link"
+          {...register("link", { required: true })}
+          className="my-2 rounded-md border-2 border-gray-300 p-2 text-neutral-900"
+        />
+        <button
+          type="submit"
+          className="my-2 rounded-md bg-blue-700 p-2 text-white"
+        >
           Generate QR Code
         </button>
       </form>
