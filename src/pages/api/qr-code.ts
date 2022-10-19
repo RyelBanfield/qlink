@@ -8,15 +8,27 @@ const credits = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     const user = req.body.user as User;
 
-    const { requestedURL } = req.body;
+    const { name, link } = req.body;
 
     const options = {
       margin: 1,
       width: 300,
     };
 
-    QRCode.toDataURL(requestedURL, options, async (err, url) => {
+    QRCode.toDataURL(link, options, async (err, url) => {
       if (err) res.status(500).json({ error: err });
+
+      await prisma.qrCode.create({
+        data: {
+          name,
+          url: link,
+          user: {
+            connect: {
+              id: user.id,
+            },
+          },
+        },
+      });
 
       await prisma.user.update({
         where: {
