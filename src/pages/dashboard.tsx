@@ -1,9 +1,9 @@
 import { Prisma } from "@prisma/client";
 import { GetServerSideProps } from "next";
-import Link from "next/link";
 import { getSession } from "next-auth/react";
 
 import QLinkCredits from "../components/QLinkCredits";
+import QRCodeCard from "../components/QRCodeCard";
 import { prisma } from "../server/db/client";
 
 const userWithQRCodes = Prisma.validator<Prisma.UserArgs>()({
@@ -29,29 +29,7 @@ const Dashboard = ({ user }: { user: UserWithQrCodes }) => {
         </div>
       )}
       {user.qrCodes.map((qrCode) => (
-        <div
-          key={qrCode.id}
-          className="mb-3 flex justify-between rounded-md bg-neutral-100 p-6"
-        >
-          <div className="flex flex-col">
-            <h4 className="text-xl font-semibold text-neutral-900">
-              {qrCode.name}
-            </h4>
-            <a
-              href={qrCode.url}
-              target="_blank"
-              className="text-neutral-900 hover:underline"
-              rel="noreferrer"
-            >
-              {qrCode.url}
-            </a>
-          </div>
-          <Link href={`/qr-codes/${qrCode.id}`}>
-            <a className="my-2 rounded-md bg-blue-700 p-2 px-6 text-white">
-              View
-            </a>
-          </Link>
-        </div>
+        <QRCodeCard key={qrCode.id} qrCode={qrCode} />
       ))}
     </>
   );
@@ -60,7 +38,7 @@ const Dashboard = ({ user }: { user: UserWithQrCodes }) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);
 
-  if (!session) {
+  if (!session || !session.user) {
     return {
       redirect: {
         destination: "/",
@@ -71,7 +49,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const user = await prisma.user.findUnique({
     where: {
-      id: session.user?.id,
+      id: session.user.id,
     },
     include: {
       qrCodes: true,
