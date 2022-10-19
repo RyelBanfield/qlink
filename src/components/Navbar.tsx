@@ -16,7 +16,10 @@ const Navbar = ({}) => {
           <span className="ml-2 text-sm text-gray-500">
             |{" "}
             {router.pathname.slice(1).charAt(0).toUpperCase() +
-              router.pathname.slice(2)}
+              router.pathname
+                .slice(2)
+                .replace("r-c", "RC")
+                .replace("/[id]", "")}
           </span>
         )}
       </div>
