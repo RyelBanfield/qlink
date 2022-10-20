@@ -10,7 +10,7 @@ const Navbar = ({}) => {
     <nav className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-6 sm:px-8 md:px-12">
       <div>
         <Link href="/">
-          <a className="text-xl font-semibold">QLink</a>
+          <a className="text-xl font-semibold hover:text-gray-600">QLink</a>
         </Link>
         {router.pathname !== "/" && (
           <span className="ml-2 text-sm text-gray-500">

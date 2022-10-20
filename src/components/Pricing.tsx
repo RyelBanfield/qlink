@@ -36,7 +36,7 @@ const Plan = ({
   const cardClasses = `flex w-full flex-col space-y-6 rounded-md p-6 shadow-lg ${bgColor}`;
 
   return (
-    <div className="flex h-80 w-full p-3 md:w-1/2 lg:w-1/3">
+    <div className="flex h-96 w-full p-3 md:w-1/2 lg:w-1/3">
       <div className={cardClasses}>
         <div>
           <h4 className="text-2xl font-bold">{name}</h4>
@@ -76,7 +76,7 @@ const Pricing = ({}) => {
         <div className="flex flex-wrap">
           <Plan
             name="Beginner"
-            price="$5"
+            price="$10"
             monthly={false}
             description="Just getting started?"
             features={["1 QR Code"]}
@@ -84,16 +84,16 @@ const Pricing = ({}) => {
           />
           <Plan
             name="Starter"
-            price="$25"
-            monthly={true}
+            price="Coming Soon"
+            monthly={false}
             description="For those that need more."
             features={["Unlimited QR Codes", "1 QLink Website"]}
             bgColor="bg-blue-700"
           />
           <Plan
             name="Pro"
-            price="$50"
-            monthly={true}
+            price="Coming Soon"
+            monthly={false}
             description="For the entrepreneurs."
             features={["Unlimited QR Codes", "Unlimited QLink Websites"]}
             bgColor="bg-gray-900"

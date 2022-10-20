@@ -23,9 +23,9 @@ const Features = ({}) => {
         What do we have to offer?
       </h2>
       <ul className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-        <Item text="A fast and easy way to create & download QR codes" />
-        <Item text="A website to host all your social links" />
-        <Item text="An associate plan which you can use to sell QR codes & websites to local businesses" />
+        <Item text="A fast and easy way to create, store & download QR codes" />
+        <Item text="A website to host all your social media links" />
+        <Item text="A discount for associates and more features to come" />
       </ul>
     </section>
   );

@@ -13,7 +13,7 @@ const Hero = ({}) => {
         </p>
         <button
           onClick={() => signIn("google")}
-          className="inline-block w-48 rounded bg-blue-700 p-2 text-center font-bold"
+          className="inline-block w-48 rounded bg-blue-700 p-2 text-center font-bold hover:bg-blue-600"
         >
           Sign up with Google
         </button>
