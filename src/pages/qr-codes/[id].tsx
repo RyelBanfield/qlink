@@ -8,20 +8,26 @@ import { prisma } from "../../server/db/client";
 
 const QRCodePage = ({ qrCode }: { qrCode: QrCode }) => {
   return (
-    <div className="flex flex-grow flex-col items-center justify-center">
-      <h1 className="mb-3 text-3xl font-semibold">{qrCode.name}</h1>
-      <Link href={qrCode.url}>
-        <a className="mb-6 text-lg hover:underline">{qrCode.url}</a>
-      </Link>
-      <Image src={qrCode.image} alt="QR Code" width={300} height={300} />
+    <>
+      <div className="mt-3 flex h-min flex-col rounded-md bg-neutral-100 px-3 py-8 text-neutral-900">
+        <h1 className="text-center text-3xl font-bold">{qrCode.name}</h1>
+        <Link href={qrCode.url}>
+          <a className="text-center text-lg text-blue-700 hover:underline">
+            {qrCode.url}
+          </a>
+        </Link>
+      </div>
+      <div className="flex flex-grow flex-col items-center justify-center">
+        <Image src={qrCode.image} alt="QR Code" width={300} height={300} />
+      </div>
       <a
         href={qrCode.image}
         download={`${qrCode.name}.png`}
-        className="mt-6 w-48 rounded bg-blue-700 p-2 text-center font-bold"
+        className="mt-auto mb-6 w-full rounded bg-blue-700 p-2 text-center font-bold"
       >
         Download PNG
       </a>
-    </div>
+    </>
   );
 };
 

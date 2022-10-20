@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const QLinkCredits = ({ user }: { user: User }) => {
   return (
-    <section className="mt-3 flex h-min flex-col rounded-md bg-neutral-100 px-3 py-8">
+    <div className="mt-3 flex h-min flex-col rounded-md bg-neutral-100 px-3 py-8">
       <h2 className="mb-4 text-center text-3xl font-bold leading-none text-neutral-900">
         You have <span className="text-blue-700">{user.credits}</span> QLink
         Credit
@@ -32,7 +32,7 @@ const QLinkCredits = ({ user }: { user: User }) => {
           </Link>
         </div>
       )}
-    </section>
+    </div>
   );
 };
 
