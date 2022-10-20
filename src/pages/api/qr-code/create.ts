@@ -2,9 +2,9 @@ import { User } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 import QRCode from "qrcode";
 
-import { prisma } from "../../server/db/client";
+import { prisma } from "../../../server/db/client";
 
-const credits = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     const user = req.body.user as User;
 
@@ -50,4 +50,4 @@ const credits = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 };
 
-export default credits;
+export default handler;
