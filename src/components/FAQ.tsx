@@ -54,9 +54,10 @@ const FAQ = ({}) => {
               How can I generate my own QR code?
             </h3>
             <p className="mt-1 text-neutral-600">
-              There are different platforms and tools to create your own QR, but
-              none like QR Code Now. With QR Code Now, you can not only create
-              custom QR codes, you can also manage and edit your code.
+              You can generate your own QR Code with our QR Code generator. Just
+              enter the URL or text you want to encode and click &quot;Generate
+              QR Code&quot;. You can also customize the appearance of your Code
+              by changing the color, size, and logo.
             </p>
           </div>
         </div>
