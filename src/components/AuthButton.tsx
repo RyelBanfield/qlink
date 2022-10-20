@@ -9,14 +9,20 @@ const AuthButton = () => {
 
   if (session) {
     return (
-      <button onClick={() => signOut()} className="font-semibold">
+      <button
+        onClick={() => signOut()}
+        className="font-semibold hover:text-gray-600"
+      >
         Sign out
       </button>
     );
   }
 
   return (
-    <button onClick={() => signIn("google")} className="font-semibold">
+    <button
+      onClick={() => signIn("google")}
+      className="font-semibold text-blue-700 hover:text-blue-600"
+    >
       Sign in
     </button>
   );
