@@ -35,7 +35,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     switch (event.type) {
       case "checkout.session.completed": {
         const session = event.data.object;
-        const creditsPurchased = session.amount_total / 500;
 
         const user = await prisma.user.findUnique({
           where: {
@@ -50,18 +49,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             },
             data: {
               credits: {
-                increment: creditsPurchased,
+                increment: 1,
               },
             },
           });
-
-          console.log(
-            "Credits of user: " + user.email + " have been incremented"
-          );
-        } else {
-          console.log(
-            "User with email: " + session.customer_details.email + " not found"
-          );
         }
         break;
       }
