@@ -25,15 +25,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
               customer_email: user.email,
               line_items: [
                 {
-                  price: "price_1LrqZ2EZaVDCxASzmZtBkum2",
-                  adjustable_quantity: {
-                    enabled: true,
-                    minimum: 1,
-                    maximum: 10,
-                  },
+                  price: "price_1Lv3lxEZaVDCxASzcCLp99zf",
                   quantity: 1,
                 },
               ],
+              allow_promotion_codes: true,
               mode: "payment",
               success_url: `${req.headers.origin}/?success=true`,
               cancel_url: `${req.headers.origin}/?canceled=true`,
