@@ -52,7 +52,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       id: session.user.id,
     },
     include: {
-      qrCodes: true,
+      qrCodes: {
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
     },
   });
 
