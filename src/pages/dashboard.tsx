@@ -1,5 +1,5 @@
 import { Prisma } from "@prisma/client";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import { getSession } from "next-auth/react";
 
 import QLinkCredits from "../components/QLinkCredits";
@@ -14,7 +14,7 @@ const userWithQRCodes = Prisma.validator<Prisma.UserArgs>()({
 
 type UserWithQrCodes = Prisma.UserGetPayload<typeof userWithQRCodes>;
 
-const Dashboard = ({ user }: { user: UserWithQrCodes }) => {
+const Dashboard: NextPage = ({ user }: { user: UserWithQrCodes }) => {
   return (
     <>
       <QLinkCredits user={user} />

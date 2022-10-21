@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
 import axios from "axios";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import Image from "next/future/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -13,7 +13,7 @@ import { prisma } from "../server/db/client";
 type Inputs = { name: string; link: string };
 type QRCode = { image: string; name: string; url: string };
 
-const Creator = ({ user }: { user: User }) => {
+const Creator: NextPage = ({ user }: { user: User }) => {
   const router = useRouter();
   const { register, handleSubmit } = useForm<Inputs>();
 

@@ -1,6 +1,8 @@
+import { NextPage } from "next";
+
 import Footer from "../components/Footer";
 
-const Privacy = () => {
+const Privacy: NextPage = () => {
   return (
     <>
       <h1 className="my-6 text-xl font-bold">
