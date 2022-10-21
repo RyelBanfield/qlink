@@ -1,8 +1,7 @@
-import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 
-const Custom404: NextPage = () => {
+const Custom404 = () => {
   return (
     <>
       <Head>

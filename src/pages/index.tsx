@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from "next";
+import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
 
 import FAQ from "../components/FAQ";
@@ -6,7 +6,7 @@ import Features from "../components/Features";
 import Pricing from "../components/Pricing";
 import Hero from "./../components/Hero";
 
-const Home: NextPage = () => {
+const Home = () => {
   return (
     <>
       <Hero />

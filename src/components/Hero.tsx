@@ -1,7 +1,7 @@
 import Image from "next/future/image";
 import { signIn } from "next-auth/react";
 
-const Hero = ({}) => {
+const Hero = () => {
   return (
     <div className="flex h-96 items-center justify-between py-12">
       <div className="w-6/12">

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 import AuthButton from "./AuthButton";
 
-const Navbar = ({}) => {
+const Navbar = () => {
   const router = useRouter();
 
   return (
