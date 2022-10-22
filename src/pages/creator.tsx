@@ -13,7 +13,7 @@ import { prisma } from "../server/db/client";
 type Inputs = { name: string; link: string };
 type QRCode = { image: string; name: string; url: string };
 
-const Creator: NextPage = ({ user }: { user: User }) => {
+const Creator: NextPage<{ user: User }> = ({ user }) => {
   const router = useRouter();
   const { register, handleSubmit } = useForm<Inputs>();
 

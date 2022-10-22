@@ -14,7 +14,7 @@ const userWithQRCodes = Prisma.validator<Prisma.UserArgs>()({
 
 type UserWithQrCodes = Prisma.UserGetPayload<typeof userWithQRCodes>;
 
-const Dashboard: NextPage = ({ user }: { user: UserWithQrCodes }) => {
+const Dashboard: NextPage<{ user: UserWithQrCodes }> = ({ user }) => {
   return (
     <>
       <QLinkCredits user={user} />

@@ -1,12 +1,12 @@
 import { QrCode } from "@prisma/client";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import Image from "next/future/image";
 import Link from "next/link";
 import { getSession } from "next-auth/react";
 
 import { prisma } from "../../server/db/client";
 
-const QRCodePage = ({ qrCode }: { qrCode: QrCode }) => {
+const QRCodePage: NextPage<{ qrCode: QrCode }> = ({ qrCode }) => {
   return (
     <>
       <div className="mt-3 flex h-min flex-col rounded-md bg-neutral-100 px-3 py-8 text-neutral-900">
