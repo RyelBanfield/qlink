@@ -12,10 +12,10 @@ const Hero = () => {
           QR codes are a great way to share information with your customers.
         </p>
         <button
-          onClick={() => signIn("google")}
+          onClick={() => signIn()}
           className="inline-block w-48 rounded bg-blue-700 p-2 text-center font-bold hover:bg-blue-600"
         >
-          Sign up with Google
+          Sign up
         </button>
       </div>
 
