@@ -1,12 +1,14 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import NextAuth, { type NextAuthOptions } from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
+import Auth0Provider from "next-auth/providers/auth0";
 
 import { env } from "../../../env/server.mjs";
 import { prisma } from "../../../server/db/client";
 
 export const authOptions: NextAuthOptions = {
-  // Include user.id on session
+  adapter: PrismaAdapter(prisma),
+  secret: env.NEXTAUTH_SECRET,
+
   callbacks: {
     session({ session, user }) {
       if (session.user) {
@@ -15,16 +17,14 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
-  // Configure one or more authentication providers
+
   providers: [
-    GoogleProvider({
-      clientId: env.GOOGLE_CLIENT_ID,
-      clientSecret: env.GOOGLE_CLIENT_SECRET,
+    Auth0Provider({
+      clientId: env.AUTH0_CLIENT_ID,
+      clientSecret: env.AUTH0_CLIENT_SECRET,
+      issuer: env.AUTH0_ISSUER,
     }),
   ],
-  adapter: PrismaAdapter(prisma),
-  secret: env.NEXTAUTH_SECRET,
-  // debug: env.NODE_ENV === "development",
 };
 
 export default NextAuth(authOptions);

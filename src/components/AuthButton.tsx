@@ -20,7 +20,7 @@ const AuthButton = () => {
 
   return (
     <button
-      onClick={() => signIn()}
+      onClick={() => signIn("auth0")}
       className="font-semibold text-blue-700 hover:text-blue-600"
     >
       Sign in
