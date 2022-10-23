@@ -9,7 +9,6 @@ export const serverSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
 
   DATABASE_URL: z.string().url(),
-  SHADOW_DATABASE_URL: z.string().url(),
 
   NEXTAUTH_SECRET: z.string(),
   NEXTAUTH_URL: z.string().url(),
