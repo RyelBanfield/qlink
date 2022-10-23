@@ -19,7 +19,7 @@ const QLinkCredits = ({ user }: { user: User }) => {
             type="submit"
             className="w-44 rounded bg-blue-700 p-2 text-center font-semibold"
           >
-            Purchase credits
+            Purchase credit
           </button>
         </form>
       )}
