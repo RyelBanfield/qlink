@@ -33,14 +33,14 @@ const Plan = ({
   features: string[];
   bgColor: string;
 }) => {
-  const cardClasses = `flex w-full flex-col space-y-6 rounded-md p-6 shadow-lg ${bgColor}`;
+  const cardClasses = `flex w-full flex-col space-y-6 rounded-md p-4 sm:p-6 shadow-lg ${bgColor}`;
 
   return (
-    <div className="flex h-96 w-full p-3 md:w-1/2 lg:w-1/3">
+    <div className="flex h-80 w-full p-3 md:h-96 md:w-[32%] md:p-0">
       <div className={cardClasses}>
         <div>
-          <h4 className="text-2xl font-bold">{name}</h4>
-          <span className="text-6xl font-bold">
+          <h4 className="text-xl font-bold">{name}</h4>
+          <span className="text-2xl font-bold">
             {price}
             {monthly === false ? (
               ""
@@ -49,7 +49,7 @@ const Plan = ({
             )}
           </span>
         </div>
-        <p className="mt-3 leading-relaxed">{description}</p>
+        <p>{description}</p>
         <ul className="flex-1 space-y-2">
           {features.map((feature) => (
             <Feature key={feature} text={feature} />
@@ -60,45 +60,43 @@ const Plan = ({
   );
 };
 
-const Pricing = ({}) => {
+const Pricing = () => {
   return (
-    <section className="mb-12 rounded-md bg-neutral-100 px-6 py-12">
-      <div>
-        <div className="mx-auto mb-10 text-center">
-          <span className="font-bold uppercase tracking-wider text-blue-700">
-            Pricing
-          </span>
-          <h2 className="mt-2 text-3xl font-bold leading-none text-neutral-900 sm:text-3xl">
-            Choose your best plan
-          </h2>
-        </div>
+    <section className="mb-6 rounded-md bg-neutral-100 px-6 py-12 sm:mb-12">
+      <div className="mb-6 text-center">
+        <span className="font-bold uppercase tracking-wider text-blue-700 sm:text-lg">
+          Pricing
+        </span>
+        <h2 className="text-2xl font-bold leading-none text-neutral-900 sm:text-3xl">
+          Choose your best plan
+        </h2>
+      </div>
 
-        <div className="flex flex-wrap">
-          <Plan
-            name="Beginner"
-            price="$10"
-            monthly={false}
-            description="Just getting started?"
-            features={["1 QR Code"]}
-            bgColor="bg-gray-900"
-          />
-          <Plan
-            name="Starter"
-            price="Coming Soon"
-            monthly={false}
-            description="For those that need more."
-            features={["Unlimited QR Codes", "1 QLink Website"]}
-            bgColor="bg-blue-700"
-          />
-          <Plan
-            name="Pro"
-            price="Coming Soon"
-            monthly={false}
-            description="For the entrepreneurs."
-            features={["Unlimited QR Codes", "Unlimited QLink Websites"]}
-            bgColor="bg-gray-900"
-          />
-        </div>
+      <div className="flex flex-wrap sm:grid-cols-3 sm:justify-between">
+        <Plan
+          name="Beginner"
+          price="$10"
+          monthly={false}
+          description="For those just getting started."
+          features={["1 QR Code"]}
+          bgColor="bg-gray-900"
+        />
+        <Plan
+          name="Starter"
+          price="Coming Soon"
+          monthly={false}
+          description="For those that need more."
+          features={["Unlimited QR Codes", "1 QLink Website"]}
+          bgColor="bg-blue-700"
+        />
+        <Plan
+          name="Pro"
+          price="Coming Soon"
+          monthly={false}
+          description="For the entrepreneurs."
+          features={["Unlimited QR Codes", "Unlimited QLink Websites"]}
+          bgColor="bg-gray-900"
+        />
       </div>
     </section>
   );

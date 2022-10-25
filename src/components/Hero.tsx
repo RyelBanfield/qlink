@@ -3,23 +3,23 @@ import { signIn } from "next-auth/react";
 
 const Hero = () => {
   return (
-    <div className="flex h-96 items-center justify-between py-12">
-      <div className="w-6/12">
-        <h1 className="text-2xl font-bold">
+    <section className="mb-6 flex flex-col-reverse sm:mb-12 sm:h-80 sm:flex-row sm:items-center sm:justify-between">
+      <div className="sm:flex sm:h-full sm:w-6/12 sm:flex-col sm:justify-between">
+        <h1 className="mb-6 text-center font-bold sm:text-left sm:text-2xl">
           Create your own QR codes to boost your business or idea.
         </h1>
-        <p className="py-6">
+        <p className="mb-6 text-center sm:text-left">
           QR codes are a great way to share information with your customers.
         </p>
         <button
           onClick={() => signIn("auth0")}
-          className="inline-block w-48 rounded bg-blue-700 p-2 text-center font-bold hover:bg-blue-600"
+          className="w-full rounded bg-blue-700 p-2 text-center font-bold hover:bg-blue-600 sm:w-48"
         >
-          Sign up
+          Sign in
         </button>
       </div>
 
-      <div className="relative h-full w-5/12">
+      <div className="relative mb-6 h-40 w-full sm:mb-0 sm:h-full sm:w-5/12">
         <Image
           src="/hero.jpeg"
           alt="A woman scanning a QR code"
@@ -29,7 +29,7 @@ const Hero = () => {
           className="rounded object-cover"
         />
       </div>
-    </div>
+    </section>
   );
 };
 

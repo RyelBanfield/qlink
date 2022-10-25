@@ -7,7 +7,7 @@ const Navbar = () => {
   const router = useRouter();
 
   return (
-    <nav className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-6 sm:px-8 md:px-12">
+    <nav className="mx-auto flex w-full max-w-5xl items-center justify-between p-6 sm:px-8 md:px-12">
       <div>
         <Link href="/">
           <a className="text-xl font-semibold hover:text-gray-600">QLink</a>

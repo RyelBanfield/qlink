@@ -11,18 +11,18 @@ const Item = ({ text }: { text: string }) => {
           <polygon points="221.27 305.808 147.857 232.396 125.23 255.023 221.27 351.063 388.77 183.564 366.142 160.937 221.27 305.808"></polygon>
         </svg>
       </div>
-      <span className="text-sm">{text}</span>
+      <span className="text-sm text-neutral-900">{text}</span>
     </li>
   );
 };
 
-const Features = ({}) => {
+const Features = () => {
   return (
-    <section className="mb-12 flex h-min flex-col rounded-md bg-neutral-100 px-6 py-12 text-neutral-900">
-      <h2 className="mb-8 text-center text-3xl font-bold leading-none sm:text-3xl">
+    <section className="mb-6 rounded-md bg-neutral-100 px-6 py-12 sm:mb-12">
+      <h2 className="mb-6 text-center text-2xl font-bold leading-none text-neutral-900 sm:text-3xl">
         What do we have to offer?
       </h2>
-      <ul className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+      <ul className="grid gap-3 sm:grid-cols-3">
         <Item text="A fast and easy way to create, store & download QR codes" />
         <Item text="A website to host all your social media links" />
         <Item text="A discount for associates and more features to come" />
