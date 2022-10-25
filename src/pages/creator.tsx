@@ -1,7 +1,7 @@
 import { User } from "@prisma/client";
 import axios from "axios";
 import { GetServerSideProps, NextPage } from "next";
-import Image from "next/future/image";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
@@ -67,9 +67,9 @@ const Creator: NextPage<{ user: User }> = ({ user }) => {
       {qrCode && (
         <div className="mt-8 flex flex-grow flex-col border-t-2 border-neutral-100 pt-8">
           <div className="mb-6 flex flex-grow flex-col items-center justify-center">
-            <h1 className="mb-3 text-3xl font-semibold">{qrCode.name}</h1>
+            <h1 className="mb-3 text-xl font-bold">{qrCode.name}</h1>
             <Link href={qrCode.url}>
-              <a className="mb-6 text-lg hover:underline">{qrCode.url}</a>
+              <a className="mb-6 hover:underline">{qrCode.url}</a>
             </Link>
             <Image src={qrCode.image} alt="QR Code" width={300} height={300} />
           </div>
@@ -77,7 +77,7 @@ const Creator: NextPage<{ user: User }> = ({ user }) => {
             className="mt-auto mb-6 w-full rounded-md bg-blue-700 p-2 text-white"
             onClick={() => onConfirm(qrCode)}
           >
-            Use QLink credit to save this QR Code
+            Use credit to save this QR Code
           </button>
         </div>
       )}

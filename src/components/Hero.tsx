@@ -1,4 +1,4 @@
-import Image from "next/future/image";
+import Image from "next/image";
 import { signIn } from "next-auth/react";
 
 const Hero = () => {

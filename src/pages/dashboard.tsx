@@ -18,12 +18,12 @@ const Dashboard: NextPage<{ user: UserWithQrCodes }> = ({ user }) => {
   return (
     <>
       <QLinkCredits user={user} />
-      <h3 className="my-6 text-center text-3xl font-bold leading-none text-neutral-100">
+      <h3 className="my-6 text-center text-xl font-bold text-neutral-100">
         Your QR Codes
       </h3>
       {user.qrCodes.length === 0 && (
-        <div className="flex h-20 flex-col items-center justify-center rounded-md bg-neutral-100 font-medium">
-          <p className="text-center text-neutral-900">
+        <div className="rounded-md bg-neutral-100 p-4">
+          <p className="text-center font-medium text-neutral-900">
             You have not created any QR Codes yet.
           </p>
         </div>
