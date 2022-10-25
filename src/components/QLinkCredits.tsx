@@ -25,10 +25,11 @@ const QLinkCredits = ({ user }: { user: User }) => {
       )}
       {user.credits > 0 && (
         <div className="flex flex-col items-center">
-          <Link href="/creator">
-            <a className="w-40 rounded bg-blue-700 p-2 text-center font-semibold">
-              Create QR code
-            </a>
+          <Link
+            href="/creator"
+            className="w-40 rounded bg-blue-700 p-2 text-center font-semibold"
+          >
+            Create QR code
           </Link>
         </div>
       )}

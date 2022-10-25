@@ -68,8 +68,8 @@ const Creator: NextPage<{ user: User }> = ({ user }) => {
         <div className="mt-8 flex flex-grow flex-col border-t-2 border-neutral-100 pt-8">
           <div className="mb-6 flex flex-grow flex-col items-center justify-center">
             <h1 className="mb-3 text-xl font-bold">{qrCode.name}</h1>
-            <Link href={qrCode.url}>
-              <a className="mb-6 hover:underline">{qrCode.url}</a>
+            <Link href={qrCode.url} className="mb-6 hover:underline">
+              {qrCode.url}
             </Link>
             <Image src={qrCode.image} alt="QR Code" width={300} height={300} />
           </div>

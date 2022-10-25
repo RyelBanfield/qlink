@@ -17,10 +17,11 @@ const QRCodeCard = ({ qrCode }: { qrCode: QrCode }) => {
           {qrCode.url}
         </a>
       </div>
-      <Link href={`/qr-codes/${qrCode.id}`}>
-        <a className="w-full rounded bg-blue-700 p-2 text-center font-semibold sm:w-32 sm:p-4">
-          View
-        </a>
+      <Link
+        href={`/qr-codes/${qrCode.id}`}
+        className="w-full rounded bg-blue-700 p-2 text-center font-semibold sm:w-32 sm:p-4"
+      >
+        View
       </Link>
     </div>
   );

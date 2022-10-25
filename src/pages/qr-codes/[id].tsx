@@ -11,10 +11,11 @@ const QRCodePage: NextPage<{ qrCode: QrCode }> = ({ qrCode }) => {
     <>
       <div className="mt-3 flex h-min flex-col rounded-md bg-neutral-100 px-3 py-8 text-neutral-900">
         <h1 className="text-center text-xl font-bold">{qrCode.name}</h1>
-        <Link href={qrCode.url}>
-          <a className="text-center font-medium text-blue-700 hover:underline">
-            {qrCode.url}
-          </a>
+        <Link
+          href={qrCode.url}
+          className="text-center font-medium text-blue-700 hover:underline"
+        >
+          {qrCode.url}
         </Link>
       </div>
       <div className="flex flex-grow flex-col items-center justify-center">
