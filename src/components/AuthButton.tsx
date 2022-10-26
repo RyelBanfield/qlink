@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 const AuthButton = () => {
@@ -9,22 +10,25 @@ const AuthButton = () => {
 
   if (session) {
     return (
-      <button
+      <motion.button
+        whileTap={{ scale: 0.95 }}
         onClick={() => signOut()}
         className="font-semibold hover:text-gray-600"
       >
         Sign out
-      </button>
+      </motion.button>
     );
   }
 
   return (
-    <button
+    <motion.button
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
       onClick={() => signIn("auth0")}
       className="font-semibold text-blue-700 hover:text-blue-600"
     >
       Sign in
-    </button>
+    </motion.button>
   );
 };
 

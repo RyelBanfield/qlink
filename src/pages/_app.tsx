@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 
+import { motion } from "framer-motion";
 import type { AppType } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -14,6 +15,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
   pageProps: { session, ...pageProps },
 }) => {
   const router = useRouter();
+
   return (
     <SessionProvider session={session}>
       <Head>
@@ -26,9 +28,22 @@ const MyApp: AppType<{ session: Session | null }> = ({
       </Head>
 
       <Navbar />
-      <main className="mx-auto flex w-full max-w-5xl flex-grow flex-col px-6 sm:px-8 md:px-12">
+      <motion.main
+        key={router.route}
+        initial="pageInitial"
+        animate="pageAnimate"
+        variants={{
+          pageInitial: {
+            opacity: 0,
+          },
+          pageAnimate: {
+            opacity: 1,
+          },
+        }}
+        className="mx-auto flex w-full max-w-5xl flex-grow flex-col p-6 sm:px-8 md:px-12"
+      >
         <Component {...pageProps} />
-      </main>
+      </motion.main>
       {router.pathname === "/" && <Footer />}
     </SessionProvider>
   );

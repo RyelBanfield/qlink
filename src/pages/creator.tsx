@@ -1,7 +1,8 @@
 import { User } from "@prisma/client";
 import axios from "axios";
+import { motion } from "framer-motion";
 import { GetServerSideProps, NextPage } from "next";
-import Image from "next/future/image";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
@@ -19,7 +20,7 @@ const Creator: NextPage<{ user: User }> = ({ user }) => {
 
   const [qrCode, setQrCode] = useState<QRCode | null>(null);
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
     axios
       .post("/api/qr-code/preview", {
         name: data.name,
@@ -31,7 +32,7 @@ const Creator: NextPage<{ user: User }> = ({ user }) => {
       .catch((err) => console.log(err));
   };
 
-  const onConfirm = async (qrCode: QRCode) => {
+  const onConfirm = (qrCode: QRCode) => {
     axios
       .post("/api/qr-code/create", {
         user,
@@ -50,35 +51,41 @@ const Creator: NextPage<{ user: User }> = ({ user }) => {
         <input
           placeholder="Enter Name of QR Code"
           {...register("name", { required: true })}
-          className="my-2 rounded-md border-2 border-gray-300 p-2 text-neutral-900"
+          className="my-2 rounded border-2 border-gray-300 p-2 text-neutral-900"
         />
         <input
           placeholder="Enter Link"
           {...register("link", { required: true })}
-          className="my-2 rounded-md border-2 border-gray-300 p-2 text-neutral-900"
+          className="my-2 rounded border-2 border-gray-300 p-2 text-neutral-900"
         />
-        <button
+        <motion.button
+          whileTap={{ scale: 0.95 }}
           type="submit"
-          className="my-2 rounded-md bg-blue-700 p-2 text-white"
+          className="my-2 rounded bg-blue-700 p-2"
         >
           Generate QR Code
-        </button>
+        </motion.button>
       </form>
+
       {qrCode && (
-        <div className="mt-8 flex flex-grow flex-col border-t-2 border-neutral-100 pt-8">
-          <div className="mb-6 flex flex-grow flex-col items-center justify-center">
-            <h1 className="mb-3 text-3xl font-semibold">{qrCode.name}</h1>
-            <Link href={qrCode.url}>
-              <a className="mb-6 text-lg hover:underline">{qrCode.url}</a>
+        <div className="mt-8 flex flex-grow flex-col border-t-2 border-neutral-100">
+          <div className="my-10 flex flex-col items-center justify-center">
+            <h1 className="mb-2 text-2xl font-bold">{qrCode.name}</h1>
+            <Link
+              href={qrCode.url}
+              className="mb-6 text-blue-800 hover:underline"
+            >
+              {qrCode.url}
             </Link>
             <Image src={qrCode.image} alt="QR Code" width={300} height={300} />
           </div>
-          <button
-            className="mt-auto mb-6 w-full rounded-md bg-blue-700 p-2 text-white"
+          <motion.button
+            whileTap={{ scale: 0.95 }}
             onClick={() => onConfirm(qrCode)}
+            className="mt-auto mb-6 rounded bg-blue-700 p-2"
           >
-            Use QLink credit to save this QR Code
-          </button>
+            Use credit to save this QR Code
+          </motion.button>
         </div>
       )}
     </>
