@@ -10,10 +10,11 @@ const Navbar = () => {
   return (
     <nav className="mx-auto flex w-full max-w-5xl items-center justify-between p-6 sm:px-8 md:px-12">
       <div>
-        <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-          <Link href="/" className="font-semibold hover:text-gray-600">
-            QLink
-          </Link>
+        <motion.button
+          whileTap={{ scale: 0.95 }}
+          className="font-semibold hover:text-gray-600"
+        >
+          <Link href="/">QLink</Link>
         </motion.button>
         {router.pathname !== "/" && (
           <span className="ml-2 text-sm text-gray-500">

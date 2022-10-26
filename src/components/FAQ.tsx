@@ -9,7 +9,7 @@ const QNA = ({ question, answer }: { question: string; answer: string }) => {
 
 const FAQ = () => {
   return (
-    <section className="mb-6 rounded-md bg-neutral-100 px-6 py-12 sm:mb-12">
+    <section className="mb-6 rounded bg-neutral-100 px-6 py-12 sm:mb-12">
       <div className="mx-auto flex flex-col justify-center p-4">
         <div className="mx-auto mb-10 text-center">
           <span className="font-bold uppercase tracking-wider text-blue-700 sm:text-lg">

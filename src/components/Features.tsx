@@ -18,7 +18,7 @@ const Item = ({ text }: { text: string }) => {
 
 const Features = () => {
   return (
-    <section className="mb-6 rounded-md bg-neutral-100 px-6 py-12 sm:mb-12">
+    <section className="mb-6 rounded bg-neutral-100 px-6 py-12 sm:mb-12">
       <h2 className="mb-6 text-center text-2xl font-bold leading-none text-neutral-900 sm:text-3xl">
         What do we have to offer?
       </h2>

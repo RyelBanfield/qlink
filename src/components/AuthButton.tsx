@@ -11,7 +11,6 @@ const AuthButton = () => {
   if (session) {
     return (
       <motion.button
-        whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => signOut()}
         className="font-semibold hover:text-gray-600"

@@ -22,7 +22,7 @@ const Dashboard: NextPage<{ user: UserWithQrCodes }> = ({ user }) => {
         Your QR Codes
       </h3>
       {user.qrCodes.length === 0 && (
-        <div className="rounded-md bg-neutral-100 p-4">
+        <div className="rounded bg-neutral-100 p-4">
           <p className="text-center font-medium text-neutral-900">
             You have not created any QR Codes yet.
           </p>

@@ -33,7 +33,7 @@ const Plan = ({
   features: string[];
   bgColor: string;
 }) => {
-  const cardClasses = `flex w-full flex-col space-y-6 rounded-md p-4 sm:p-6 shadow-lg ${bgColor}`;
+  const cardClasses = `flex w-full flex-col space-y-6 rounded p-4 sm:p-6 shadow-lg ${bgColor}`;
 
   return (
     <div className="flex h-80 w-full p-3 md:h-96 md:w-[32%] md:p-0">
@@ -62,7 +62,7 @@ const Plan = ({
 
 const Pricing = () => {
   return (
-    <section className="mb-6 rounded-md bg-neutral-100 px-6 py-12 sm:mb-12">
+    <section className="mb-6 rounded bg-neutral-100 px-6 py-12 sm:mb-12">
       <div className="mb-6 text-center">
         <span className="font-bold uppercase tracking-wider text-blue-700 sm:text-lg">
           Pricing

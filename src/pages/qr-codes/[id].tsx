@@ -9,7 +9,7 @@ import { prisma } from "../../server/db/client";
 const QRCodePage: NextPage<{ qrCode: QrCode }> = ({ qrCode }) => {
   return (
     <>
-      <div className="mt-3 flex h-min flex-col rounded-md bg-neutral-100 px-3 py-8 text-neutral-900">
+      <div className="mt-3 flex h-min flex-col rounded bg-neutral-100 px-3 py-8 text-neutral-900">
         <h1 className="text-center text-xl font-bold">{qrCode.name}</h1>
         <Link
           href={qrCode.url}
