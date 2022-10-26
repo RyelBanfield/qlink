@@ -19,7 +19,7 @@ const QLinkCredits = ({ user }: { user: User }) => {
           <motion.button
             whileTap={{ scale: 0.95 }}
             type="submit"
-            className="w-44 rounded bg-blue-700 p-2 text-center font-semibold"
+            className="h-12 w-44 rounded bg-blue-700 p-2 text-center font-semibold"
           >
             Purchase credit
           </motion.button>
@@ -29,7 +29,7 @@ const QLinkCredits = ({ user }: { user: User }) => {
         <div className="flex flex-col items-center">
           <motion.button
             whileTap={{ scale: 0.95 }}
-            className="w-44 rounded bg-blue-700 p-2 text-center font-semibold"
+            className="h-12 w-44 rounded bg-blue-700 p-2 text-center font-semibold"
           >
             <Link href="/creator">Create QR code</Link>
           </motion.button>
