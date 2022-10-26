@@ -1,33 +1,25 @@
 import { Popover, Transition } from "@headlessui/react";
-import {
-  Bars3Icon,
-  ChartBarIcon,
-  CursorArrowRaysIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { Bars3Icon, UserIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 import { Fragment } from "react";
 
 import AuthButton from "./AuthButton";
 
-const solutions = [
+const pages = [
   {
-    name: "Analytics",
+    name: "Account",
     description:
       "Get a better understanding of where your traffic is coming from.",
-    href: "#",
-    icon: ChartBarIcon,
-  },
-  {
-    name: "Engagement",
-    description: "Speak directly to your customers in a more meaningful way.",
-    href: "#",
-    icon: CursorArrowRaysIcon,
+    href: "/account",
+    icon: UserIcon,
   },
 ];
 
 const Header = () => {
+  const { data: session, status } = useSession();
+
   return (
     <Popover className="relative z-10">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 md:px-12">
@@ -40,6 +32,20 @@ const Header = () => {
               <Link href="/">QLink</Link>
             </motion.button>
           </div>
+
+          {status !== "loading" && session && (
+            <div className="-my-2 -mr-2 hidden md:flex md:space-x-8">
+              {pages.map((page) => (
+                <motion.button
+                  whileTap={{ scale: 0.95 }}
+                  key={page.name}
+                  className="font-semibold hover:text-neutral-600"
+                >
+                  <Link href={page.href}>{page.name}</Link>
+                </motion.button>
+              ))}
+            </div>
+          )}
 
           <div className="-my-2 -mr-2 md:hidden">
             <Popover.Button className="inline-flex items-center justify-center rounded bg-blue-700 p-2 hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-600">
@@ -87,7 +93,7 @@ const Header = () => {
               </div>
               <div className="mt-6">
                 <nav className="grid gap-y-8">
-                  {solutions.map((item) => (
+                  {pages.map((item) => (
                     <a
                       key={item.name}
                       href={item.href}
