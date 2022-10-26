@@ -12,6 +12,8 @@ const userWithQRCodes = Prisma.validator<Prisma.UserArgs>()({
   },
 });
 
+// Test commit
+
 type UserWithQrCodes = Prisma.UserGetPayload<typeof userWithQRCodes>;
 
 const Dashboard: NextPage<{ user: UserWithQrCodes }> = ({ user }) => {
