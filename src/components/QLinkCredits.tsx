@@ -6,8 +6,7 @@ const QLinkCredits = ({ user }: { user: User }) => {
   return (
     <div className="rounded bg-neutral-100 p-4">
       <h2 className="mb-6 text-center text-xl font-bold leading-none text-neutral-900">
-        You have <span className="text-blue-700">{user.credits}</span> QLink
-        Credit
+        You have <span className="text-blue-700">{user.credits}</span> Credit
         {user.credits === 1 ? "" : "s"}
       </h2>
       {user.credits === 0 && (
@@ -31,7 +30,9 @@ const QLinkCredits = ({ user }: { user: User }) => {
             whileTap={{ scale: 0.95 }}
             className="h-12 w-44 rounded bg-blue-700 p-2 text-center font-semibold"
           >
-            <Link href="/creator">Create QR code</Link>
+            <Link href="/creator" className="inline-block w-full">
+              Create QR code
+            </Link>
           </motion.button>
         </div>
       )}
