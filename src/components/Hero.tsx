@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Image from "next/image";
 import { signIn } from "next-auth/react";
 
@@ -11,12 +12,14 @@ const Hero = () => {
         <p className="mb-6 text-center sm:text-left">
           QR codes are a great way to share information with your customers.
         </p>
-        <button
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.9 }}
           onClick={() => signIn("auth0")}
           className="w-full rounded bg-blue-700 p-2 text-center font-bold hover:bg-blue-600 sm:w-48"
         >
           Sign in
-        </button>
+        </motion.button>
       </div>
 
       <div className="relative mb-6 h-40 w-full sm:mb-0 sm:h-full sm:w-5/12">
