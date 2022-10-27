@@ -7,6 +7,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { Fragment } from "react";
 
@@ -22,6 +23,9 @@ const pages = [
 ];
 
 const Header = () => {
+  const router = useRouter();
+  const activePage = pages.find((page) => page.href === router.pathname);
+
   const { data: session, status } = useSession();
 
   return (
@@ -45,7 +49,16 @@ const Header = () => {
                   key={page.name}
                   className="font-semibold hover:text-neutral-600"
                 >
-                  <Link href={page.href}>{page.name}</Link>
+                  <Link
+                    href={page.href}
+                    className={
+                      activePage?.name === page.name
+                        ? "text-blue-700"
+                        : "text-neutral-100 hover:text-neutral-600"
+                    }
+                  >
+                    {page.name}
+                  </Link>
                 </motion.button>
               ))}
             </div>
@@ -94,7 +107,7 @@ const Header = () => {
                     <a
                       key={item.name}
                       href={item.href}
-                      className="-m-3 flex items-center rounded  p-3 hover:bg-neutral-50"
+                      className="-m-3 flex items-center rounded p-3 hover:bg-neutral-50"
                     >
                       <item.icon
                         className="h-6 w-6 flex-shrink-0 text-blue-700"

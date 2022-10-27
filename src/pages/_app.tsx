@@ -9,7 +9,6 @@ import { SessionProvider } from "next-auth/react";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import Navbar from "../components/Navbar";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
