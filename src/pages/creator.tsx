@@ -1,5 +1,4 @@
 import { User } from "@prisma/client";
-import axios from "axios";
 import { motion } from "framer-motion";
 import { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
@@ -21,26 +20,38 @@ const Creator: NextPage<{ user: User }> = ({ user }) => {
   const [qrCode, setQrCode] = useState<QRCode | null>(null);
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    axios
-      .post("/api/qr-code/preview", {
+    fetch("/api/qr-code/preview", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         name: data.name,
         link: data.link,
-      })
-      .then((res) => {
-        setQrCode(res.data);
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setQrCode(data);
       })
       .catch((err) => console.log(err));
   };
 
   const onConfirm = (qrCode: QRCode) => {
-    axios
-      .post("/api/qr-code/create", {
+    fetch("/api/qr-code/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
         user,
         name: qrCode.name,
         link: qrCode.url,
-      })
-      .then((res) => {
-        router.push(`/qr-codes/${res.data.id}`);
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        router.push(`/qr-codes/${data.id}`);
       })
       .catch((err) => console.log(err));
   };
