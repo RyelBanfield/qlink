@@ -66,4 +66,5 @@ model User {
     credits       Int       @default(0)
     plan          String    @default("Beginner")
     qrCodes       QrCode[]
+    isAdmin       Boolean   @default(false)
 }

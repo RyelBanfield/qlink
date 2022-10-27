@@ -23,7 +23,7 @@ const FAQ = () => {
         <div className="grid gap-10 sm:grid-cols-2">
           <QNA
             question="What is a QR Code?"
-            answer='QR Code is a two-dimensional version of the barcode, typically
+            answer='A QR Code is a two-dimensional version of the barcode, typically
               made up of black and white pixel patterns. Denso Wave, a Japanese
               subsidiary of the Toyota supplier Denso, developed them for
               marking components in order to accelerate logistics processes for
@@ -53,9 +53,9 @@ const FAQ = () => {
           <QNA
             question="How can I generate my own QR code?"
             answer='You can generate your own QR Code with our QR Code generator. Just
-              enter the URL or text you want to encode and click "Generate
-              QR Code". You can also customize the appearance of your Code
-              by changing the color, size, and logo.'
+              enter the URL you want to encode and click "Generate
+              QR Code". If you don&apos;t have a website yet, you can use our
+              one-link website creator and create a QR Code that links to all your accounts.'
           />
         </div>
       </div>
