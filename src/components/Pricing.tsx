@@ -39,7 +39,7 @@ const Plan = ({
     <div className="flex h-80 w-full p-3 md:h-96 md:w-[32%] md:p-0">
       <div className={cardClasses}>
         <div>
-          <h4 className="text-xl font-bold">{name}</h4>
+          <p className="text-xl font-bold">{name}</p>
           <span className="text-2xl font-bold">
             {price}
             {monthly === false ? (
