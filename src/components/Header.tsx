@@ -1,5 +1,10 @@
 import { Popover, Transition } from "@headlessui/react";
-import { Bars3Icon, UserIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  Bars3Icon,
+  HomeIcon,
+  UserIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
@@ -8,10 +13,9 @@ import { Fragment } from "react";
 import AuthButton from "./AuthButton";
 
 const pages = [
+  { name: "Dashboard", href: "/dashboard", icon: HomeIcon },
   {
     name: "Account",
-    description:
-      "Get a better understanding of where your traffic is coming from.",
     href: "/account",
     icon: UserIcon,
   },
@@ -71,19 +75,12 @@ const Header = () => {
       >
         <Popover.Panel
           focus
-          className="absolute inset-x-0 top-0 origin-top-right transform p-2 transition md:hidden"
+          className="absolute inset-x-0 top-0 origin-top-right transform p-6 transition md:hidden"
         >
           <div className="divide-y-2 divide-neutral-50 rounded-lg bg-neutral-100 shadow-lg ring-1 ring-black ring-opacity-5">
             <div className="px-5 pt-5 pb-6">
               <div className="flex items-center justify-between">
-                <div>
-                  <motion.button
-                    whileTap={{ scale: 0.95 }}
-                    className="font-semibold text-neutral-900 hover:text-neutral-600"
-                  >
-                    <Link href="/">QLink</Link>
-                  </motion.button>
-                </div>
+                <h1 className="font-semibold text-neutral-900">QLink</h1>
                 <div className="-mr-2">
                   <Popover.Button className="inline-flex items-center justify-center rounded p-2 text-neutral-900 hover:bg-neutral-100 hover:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-600">
                     <span className="sr-only">Close menu</span>
