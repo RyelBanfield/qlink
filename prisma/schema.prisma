@@ -64,6 +64,6 @@ model User {
     accounts      Account[]
     sessions      Session[]
     credits       Int       @default(0)
-    plan          String    @default("beginner")
+    plan          String    @default("Beginner")
     qrCodes       QrCode[]
 }
