@@ -15,7 +15,7 @@ const Hero = () => {
         <motion.button
           whileTap={{ scale: 0.95 }}
           onClick={() => signIn("auth0")}
-          className="w-full rounded bg-blue-700 p-2 text-center font-bold hover:bg-blue-600 sm:w-48"
+          className="w-full rounded bg-blue-800 p-2 text-center font-bold hover:bg-blue-600 sm:w-48"
         >
           Sign in
         </motion.button>

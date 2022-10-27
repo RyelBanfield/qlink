@@ -8,7 +8,7 @@ import type { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 
 import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import Header from "../components/Header";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -27,7 +27,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Navbar />
+      <Header />
       <motion.main
         key={router.route}
         initial="pageInitial"
