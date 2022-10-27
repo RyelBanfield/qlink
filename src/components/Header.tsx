@@ -14,7 +14,11 @@ import { Fragment } from "react";
 import AuthButton from "./AuthButton";
 
 const pages = [
-  { name: "Dashboard", href: "/dashboard", icon: HomeIcon },
+  {
+    name: "Dashboard",
+    href: "/dashboard",
+    icon: HomeIcon,
+  },
   {
     name: "Account",
     href: "/account",
@@ -101,25 +105,29 @@ const Header = () => {
                   </Popover.Button>
                 </div>
               </div>
-              <div className="mt-6">
-                <nav className="grid gap-y-8">
-                  {pages.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="-m-3 flex items-center rounded p-3 hover:bg-neutral-50"
-                    >
-                      <item.icon
-                        className="h-6 w-6 flex-shrink-0 text-blue-700"
-                        aria-hidden="true"
-                      />
-                      <span className="ml-3 text-base font-medium text-neutral-900">
-                        {item.name}
-                      </span>
-                    </a>
-                  ))}
-                </nav>
-              </div>
+              {status !== "loading" && session && (
+                <>
+                  <div className="mt-6">
+                    <nav className="grid gap-y-8">
+                      {pages.map((item) => (
+                        <a
+                          key={item.name}
+                          href={item.href}
+                          className="-m-3 flex items-center rounded p-3 hover:bg-neutral-50"
+                        >
+                          <item.icon
+                            className="h-6 w-6 flex-shrink-0 text-blue-700"
+                            aria-hidden="true"
+                          />
+                          <span className="ml-3 text-base font-medium text-neutral-900">
+                            {item.name}
+                          </span>
+                        </a>
+                      ))}
+                    </nav>
+                  </div>
+                </>
+              )}
             </div>
             <div className="space-y-6 py-6 px-5">
               <div>
