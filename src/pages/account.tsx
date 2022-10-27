@@ -6,10 +6,16 @@ import { prisma } from "../server/db/client";
 
 const Account: NextPage<{ user: User }> = ({ user }) => {
   return (
-    <div>
-      <h1>Email</h1>
-      <p>{user.email}</p>
-    </div>
+    <>
+      <div className="mb-6 flex flex-col rounded bg-neutral-100 p-4">
+        <h2 className="text-2xl font-bold text-neutral-900">Email</h2>
+        <p className="font-medium text-neutral-600">{user.email}</p>
+      </div>
+      <div className="mb-6 flex flex-col rounded bg-neutral-100 p-4">
+        <h2 className="text-2xl font-bold text-neutral-900">Plan</h2>
+        <p className="font-medium text-neutral-900">{user.plan}</p>
+      </div>
+    </>
   );
 };
 

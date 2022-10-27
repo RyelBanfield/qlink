@@ -30,7 +30,7 @@ const Header = () => {
 
   return (
     <Popover className="relative z-10">
-      <div className="mx-auto max-w-7xl px-6 sm:px-8 md:px-12">
+      <div className="mx-auto max-w-5xl px-6 sm:px-8 md:px-12">
         <div className="flex items-center justify-between py-6 md:justify-start md:space-x-10">
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <motion.button
