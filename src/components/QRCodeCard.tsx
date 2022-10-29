@@ -20,9 +20,12 @@ const QRCodeCard = ({ qrCode }: { qrCode: QrCode }) => {
       </div>
       <motion.button
         whileTap={{ scale: 0.95 }}
-        className="h-12 w-full rounded bg-blue-700 p-2 text-center font-semibold sm:w-44"
+        className="h-12 w-full rounded bg-blue-700 text-center font-semibold sm:w-44"
       >
-        <Link href={`/qr-codes/${qrCode.id}`} className="inline-block w-full">
+        <Link
+          href={`/qr-codes/${qrCode.id}`}
+          className="flex h-full w-full items-center justify-center"
+        >
           View
         </Link>
       </motion.button>

@@ -1,36 +1,44 @@
-import { Prisma } from "@prisma/client";
+import { User } from "@prisma/client";
+import { motion } from "framer-motion";
 import { GetServerSideProps, NextPage } from "next";
+import Link from "next/link";
 import { getSession } from "next-auth/react";
 
-import QLinkCredits from "../components/QLinkCredits";
-import QRCodeCard from "../components/QRCodeCard";
 import { prisma } from "../server/db/client";
 
-const userWithQRCodes = Prisma.validator<Prisma.UserArgs>()({
-  include: {
-    qrCodes: true,
-  },
-});
-
-type UserWithQrCodes = Prisma.UserGetPayload<typeof userWithQRCodes>;
-
-const Dashboard: NextPage<{ user: UserWithQrCodes }> = ({ user }) => {
+const Dashboard: NextPage<{ user: User }> = ({ user }) => {
   return (
     <>
-      <QLinkCredits user={user} />
-      <h3 className="my-6 text-center text-xl font-bold text-neutral-100">
-        Your QR Codes
-      </h3>
-      {user.qrCodes.length === 0 && (
-        <div className="rounded bg-neutral-100 p-4">
-          <p className="text-center font-medium text-neutral-900">
-            You have not created any QR Codes yet.
-          </p>
+      <div className="rounded bg-neutral-100 p-4">
+        <h1 className="mb-6 text-center text-xl font-bold leading-none text-neutral-900">
+          Dashboard
+        </h1>
+
+        <div className="flex justify-evenly">
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            className="h-12 w-44 rounded bg-blue-700 text-center font-semibold"
+          >
+            <Link
+              href="/qr-codes"
+              className="flex h-full w-full items-center justify-center"
+            >
+              QR Codes
+            </Link>
+          </motion.button>
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            className="h-12 w-44 rounded bg-blue-700 text-center font-semibold"
+          >
+            <Link
+              href="/websites"
+              className="flex h-full w-full items-center justify-center"
+            >
+              Websites
+            </Link>
+          </motion.button>
         </div>
-      )}
-      {user.qrCodes.map((qrCode) => (
-        <QRCodeCard key={qrCode.id} qrCode={qrCode} />
-      ))}
+      </div>
     </>
   );
 };
@@ -50,13 +58,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const user = await prisma.user.findUnique({
     where: {
       id: session.user.id,
-    },
-    include: {
-      qrCodes: {
-        orderBy: {
-          createdAt: "desc",
-        },
-      },
     },
   });
 

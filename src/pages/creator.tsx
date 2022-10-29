@@ -81,7 +81,7 @@ const Creator: NextPage<{ user: User }> = ({ user }) => {
       {qrCode && (
         <div className="mt-8 flex flex-grow flex-col border-t-2 border-neutral-100">
           <div className="my-10 flex flex-col items-center justify-center">
-            <h1 className="mb-2 text-2xl font-bold">{qrCode.name}</h1>
+            <p className="mb-2 text-2xl font-bold">{qrCode.name}</p>
             <Link
               href={qrCode.url}
               className="mb-6 text-blue-800 hover:underline"
