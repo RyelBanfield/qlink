@@ -69,8 +69,8 @@ const Header = () => {
                     href={page.href}
                     className={
                       activePage?.name === page.name
-                        ? "text-blue-700"
-                        : "text-neutral-100 hover:text-neutral-600"
+                        ? "flex h-full w-full items-center justify-center text-blue-700"
+                        : "flex h-full w-full items-center justify-center text-neutral-100 hover:text-neutral-600"
                     }
                   >
                     {page.name}

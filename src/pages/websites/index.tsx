@@ -27,14 +27,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     where: {
       id: session.user.id,
     },
-    include: {
-      qrCodes: {
-        orderBy: {
-          createdAt: "desc",
-        },
-      },
-    },
   });
+
+  if (user?.plan === "Beginner") {
+    return {
+      redirect: {
+        destination: "/account",
+        permanent: false,
+      },
+    };
+  }
 
   return {
     props: {

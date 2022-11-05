@@ -121,7 +121,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
   });
 
-  if (user && user.credits === 0) {
+  if (user?.credits === 0) {
     return {
       redirect: {
         destination: "/",

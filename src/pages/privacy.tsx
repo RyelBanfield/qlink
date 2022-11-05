@@ -5,13 +5,11 @@ import Footer from "../components/Footer";
 const Privacy: NextPage = () => {
   return (
     <>
-      <h1 className="my-6 text-xl font-bold">
-        Privacy Policy for RCB Software LLC
-      </h1>
+      <h1 className="my-6 text-xl font-bold">Privacy Policy for QLink</h1>
 
       <div className="mb-6">
         <p className="mb-3">
-          At QLink, accessible from https://qlink.vercel.app, one of our main
+          At QLink, accessible from https://qlink.tech, one of our main
           priorities is the privacy of our visitors. This Privacy Policy
           document contains types of information that is collected and recorded
           by QLink and how we use it.
