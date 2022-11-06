@@ -26,8 +26,6 @@ export const authOptions: NextAuthOptions = {
       authorization: `https://${env.AUTH0_ISSUER}/authorize?response_type=code&prompt=login`,
     }),
   ],
-
-  debug: true,
 };
 
 export default NextAuth(authOptions);
