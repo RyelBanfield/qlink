@@ -7,7 +7,7 @@ import { env } from "../../env/server.mjs";
 const stripe = new Stripe(env.STRIPE_SECRET_KEY, { apiVersion: "2022-08-01" });
 const webhookSecret = env.STRIPE_WEBHOOK_SECRET;
 
-// import { prisma } from "../../server/db/client";
+import { prisma } from "../../server/db/client";
 
 export const config = {
   api: {
@@ -38,28 +38,26 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     switch (event.type) {
       case "checkout.session.completed": {
-        const session = event.data.object;
+        const session = event.data.object as Stripe.Checkout.Session;
 
-        console.log(session);
+        const user = await prisma.user.findUnique({
+          where: {
+            email: session.customer_email as string,
+          },
+        });
 
-        // const user = await prisma.user.findUnique({
-        //   where: {
-        //     email: session.customer_details.email,
-        //   },
-        // });
-
-        // if (user) {
-        //   await prisma.user.update({
-        //     where: {
-        //       id: user.id,
-        //     },
-        //     data: {
-        //       credits: {
-        //         increment: 1,
-        //       },
-        //     },
-        //   });
-        // }
+        if (user) {
+          await prisma.user.update({
+            where: {
+              id: user.id,
+            },
+            data: {
+              credits: {
+                increment: 1,
+              },
+            },
+          });
+        }
         break;
       }
       default: {
