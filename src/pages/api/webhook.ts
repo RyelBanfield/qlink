@@ -1,10 +1,10 @@
 import { buffer } from "micro";
 import { NextApiRequest, NextApiResponse } from "next";
+import Stripe from "stripe";
 
 import { env } from "../../env/server.mjs";
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const stripe = require("stripe")(env.STRIPE_SECRET_KEY);
+const stripe = new Stripe(env.STRIPE_SECRET_KEY, { apiVersion: "2022-08-01" });
 const webhookSecret = env.STRIPE_WEBHOOK_SECRET;
 
 import { prisma } from "../../server/db/client";
@@ -17,28 +17,32 @@ export const config = {
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
+    const buf = await buffer(req);
     const sig = req.headers["stripe-signature"] as string;
 
-    let event;
+    let event: Stripe.Event;
 
     try {
       event = stripe.webhooks.constructEvent(
-        await buffer(req),
+        buf.toString(),
         sig,
         webhookSecret
       );
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (err: any) {
-      return res.status(400).send(`Webhook Error: ${err.message}`);
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "Unknown error";
+      if (err instanceof Error) console.log(err);
+      console.log(`❌ Error message: ${errorMessage}`);
+      res.status(400).send(`Webhook Error: ${errorMessage}`);
+      return;
     }
 
     switch (event.type) {
       case "checkout.session.completed": {
-        const session = event.data.object;
+        const session = event.data.object as Stripe.Checkout.Session;
 
         const user = await prisma.user.findUnique({
           where: {
-            email: session.customer_details.email,
+            email: session.customer_email as string,
           },
         });
 
