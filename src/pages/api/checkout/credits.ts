@@ -25,7 +25,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
               customer_email: user.email,
               line_items: [
                 {
-                  price: "price_1Lv3lxEZaVDCxASzcCLp99zf",
+                  price: env.QR_CODE_PRICE_ID,
                   quantity: 1,
                 },
               ],

@@ -22,6 +22,8 @@ export const serverSchema = z.object({
 
   STRIPE_SECRET_KEY: z.string(),
   STRIPE_WEBHOOK_SECRET: z.string(),
+
+  QR_CODE_PRICE_ID: z.string(),
 });
 
 /**
