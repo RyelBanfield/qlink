@@ -60,11 +60,13 @@ const Creator: NextPage<{ user: User }> = ({ user }) => {
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
         <input
+          type="text"
           placeholder="Enter Name of QR Code"
           {...register("name", { required: true })}
           className="my-2 rounded border-2 border-gray-300 p-2 text-neutral-900"
         />
         <input
+          type="url"
           placeholder="Enter Link"
           {...register("link", { required: true })}
           className="my-2 rounded border-2 border-gray-300 p-2 text-neutral-900"
