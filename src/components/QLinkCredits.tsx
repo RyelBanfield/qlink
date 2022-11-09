@@ -33,7 +33,7 @@ const QLinkCredits = ({ user }: { user: User }) => {
             className="h-12 w-44 rounded bg-blue-700 text-center font-semibold"
           >
             <Link
-              href="/creator"
+              href="/create/qr-code"
               className="flex h-full w-full items-center justify-center"
             >
               Create QR Code
