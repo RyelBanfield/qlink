@@ -1,3 +1,5 @@
+import Card from "./Card";
+
 const UserWebsites = () => {
   return (
     <>
@@ -5,11 +7,11 @@ const UserWebsites = () => {
         Your QR Codes
       </h3>
       {user.qrCodes.length === 0 && (
-        <div className="rounded bg-neutral-100 p-4">
+        <Card>
           <p className="text-center font-medium text-neutral-900">
             You have not created any QR Codes yet.
           </p>
-        </div>
+        </Card>
       )}
       {user.qrCodes.map((qrCode) => (
         <QRCodeCard key={qrCode.id} qrCode={qrCode} />

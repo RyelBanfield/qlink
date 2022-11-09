@@ -4,12 +4,13 @@ import { GetServerSideProps, NextPage } from "next";
 import Link from "next/link";
 import { getSession } from "next-auth/react";
 
+import Card from "../components/Card";
 import { prisma } from "../server/db/client";
 
 const Dashboard: NextPage<{ user: User }> = ({ user }) => {
   return (
     <>
-      <div className="rounded bg-neutral-100 p-4">
+      <Card>
         <h1 className="mb-6 text-center text-xl font-bold leading-none text-neutral-900">
           Dashboard
         </h1>
@@ -38,7 +39,7 @@ const Dashboard: NextPage<{ user: User }> = ({ user }) => {
             </Link>
           </motion.button>
         </div>
-      </div>
+      </Card>
     </>
   );
 };
