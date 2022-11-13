@@ -22,7 +22,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <title>QLink</title>
         <meta
           name="description"
-          content="Create your own QR codes & websites to boost your business or idea."
+          content="Create your own QR codes & websites to share your business or socials."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>

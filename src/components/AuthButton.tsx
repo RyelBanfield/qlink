@@ -34,7 +34,7 @@ const AuthButton = ({ mobile }: { mobile?: boolean }) => {
     <motion.button
       whileTap={{ scale: 0.95 }}
       onClick={() => signIn("auth0")}
-      className="font-semibold text-blue-700 hover:text-blue-600"
+      className="font-semibold hover:text-gray-600"
     >
       Sign in
     </motion.button>
