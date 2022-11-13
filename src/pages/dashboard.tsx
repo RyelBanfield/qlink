@@ -7,7 +7,7 @@ import { getSession } from "next-auth/react";
 import Card from "../components/Card";
 import { prisma } from "../server/db/client";
 
-const Dashboard: NextPage<{ user: User }> = ({ user }) => {
+const Dashboard: NextPage<{ user: User }> = ({}) => {
   return (
     <>
       <Card>
