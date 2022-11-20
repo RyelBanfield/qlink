@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 
-import Footer from "../components/Footer";
+import Footer from "../components/home/Footer";
 
 const Privacy: NextPage = () => {
   return (

@@ -7,8 +7,8 @@ import { useRouter } from "next/router";
 import type { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 
-import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Footer from "../components/home/Footer";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,

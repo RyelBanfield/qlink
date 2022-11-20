@@ -92,13 +92,15 @@ const QRCreator: NextPage<{ user: User }> = ({ user }) => {
             </Link>
             <Image src={qrCode.image} alt="QR Code" width={300} height={300} />
           </div>
-          <motion.button
-            whileTap={{ scale: 0.95 }}
-            onClick={() => onConfirm(qrCode)}
-            className="mt-auto mb-6 rounded bg-blue-700 p-2"
-          >
-            Use credit to save this QR Code
-          </motion.button>
+          {user.credits > 0 && (
+            <motion.button
+              whileTap={{ scale: 0.95 }}
+              onClick={() => onConfirm(qrCode)}
+              className="mt-auto mb-6 rounded bg-blue-700 p-2"
+            >
+              Use credit to save this QR Code
+            </motion.button>
+          )}
         </div>
       )}
     </>
@@ -122,15 +124,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       id: session.user.id,
     },
   });
-
-  if (user?.credits === 0) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
 
   return {
     props: { user },
