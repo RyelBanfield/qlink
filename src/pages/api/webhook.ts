@@ -4,7 +4,7 @@ import Stripe from "stripe";
 
 import { env } from "../../env/server.mjs";
 
-const stripe = new Stripe(env.STRIPE_SECRET_KEY, { apiVersion: "2022-08-01" });
+const stripe = new Stripe(env.STRIPE_SECRET_KEY, { apiVersion: "2022-11-15" });
 const webhookSecret = env.STRIPE_WEBHOOK_SECRET;
 
 import { prisma } from "../../server/db/client";
