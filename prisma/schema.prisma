@@ -69,6 +69,7 @@ model Website {
     id        String   @id @default(cuid())
     userId    String
     name      String
+    image     String   @db.Text
     url       String   @unique
     links     Link[]
     qrCode    String   @db.Text
