@@ -1,7 +1,7 @@
 import { QrCode } from "@prisma/client";
 import { GetServerSideProps, NextPage } from "next";
-import Image from "next/image";
 import { getSession } from "next-auth/react";
+import { QRCodeCanvas } from "qrcode.react";
 
 import { prisma } from "../../server/db/client";
 
@@ -19,8 +19,13 @@ const QRCodePage: NextPage<{ qrCode: QrCode }> = ({ qrCode }) => {
           {qrCode.url}
         </a>
       </div>
-      <div className="flex flex-grow flex-col items-center justify-center">
-        <Image src={qrCode.image} alt="QR Code" width={300} height={300} />
+      <div className="my-6 flex flex-grow flex-col items-center justify-center">
+        <QRCodeCanvas
+          value={qrCode.url}
+          size={300}
+          level={"Q"}
+          style={{ border: "8px solid #FFF" }}
+        />
       </div>
       <a
         href={qrCode.image}
