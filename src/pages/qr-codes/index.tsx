@@ -20,38 +20,50 @@ const QRCodes: NextPage<{ user: UserWithQrCodes }> = ({ user }) => {
   return (
     <>
       <Card>
-        <h1 className="mb-6 text-center text-xl font-bold leading-none text-neutral-900">
-          You have <span className="text-blue-700">{user.credits}</span> Credit
-          {user.credits === 1 ? "" : "s"}
-        </h1>
-        <div className="flex justify-evenly">
-          <form
-            action="/api/checkout/credits"
-            method="POST"
-            className="flex flex-col items-center"
-          >
-            <motion.button
-              whileTap={{ scale: 0.95 }}
-              type="submit"
-              className="h-12 w-44 rounded bg-blue-700 text-center font-semibold"
-            >
-              Purchase credit
-            </motion.button>
-          </form>
-          <div className="flex flex-col items-center">
-            <motion.button
-              whileTap={{ scale: 0.95 }}
-              className="h-12 w-44 rounded bg-blue-700 text-center font-semibold"
-            >
-              <Link
-                href="/create/qr-code"
-                className="flex h-full w-full items-center justify-center"
+        {user.plan === "Beginner" && (
+          <>
+            <div className="flex flex-col items-center justify-center">
+              <h1 className="mb-6 text-center text-xl font-bold leading-none text-neutral-900">
+                Beginner Plan -{" "}
+                <span className="text-blue-700">{user.credits}</span> Credit
+                {user.credits === 1 ? "" : "s"} Remaining
+              </h1>
+              <p className="mb-6 text-center text-lg font-medium text-neutral-900">
+                You can create/view a QR Code but would need a credit or
+                upgraded plan to save it.
+              </p>
+            </div>
+
+            <div className="flex justify-evenly">
+              <form
+                action="/api/checkout/credits"
+                method="POST"
+                className="flex flex-col items-center"
               >
-                Create QR Code
-              </Link>
-            </motion.button>
-          </div>
-        </div>
+                <motion.button
+                  whileTap={{ scale: 0.95 }}
+                  type="submit"
+                  className="h-12 w-44 rounded bg-blue-700 text-center font-semibold"
+                >
+                  Purchase Credit
+                </motion.button>
+              </form>
+              <div className="flex flex-col items-center">
+                <motion.button
+                  whileTap={{ scale: 0.95 }}
+                  className="h-12 w-44 rounded bg-blue-700 text-center font-semibold"
+                >
+                  <Link
+                    href="/create/qr-code"
+                    className="flex h-full w-full items-center justify-center"
+                  >
+                    Create QR Code
+                  </Link>
+                </motion.button>
+              </div>
+            </div>
+          </>
+        )}
       </Card>
 
       <h2 className="my-6 text-center text-xl font-bold text-neutral-100">

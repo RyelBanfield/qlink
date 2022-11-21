@@ -1,43 +1,31 @@
 import { User } from "@prisma/client";
 import { motion } from "framer-motion";
 import { GetServerSideProps, NextPage } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
+import { QRCodeCanvas } from "qrcode.react";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { prisma } from "../../server/db/client";
 
-type Inputs = { name: string; link: string };
-type QRCode = { image: string; name: string; url: string };
+type Inputs = { name: string; url: string };
 
 const QRCreator: NextPage<{ user: User }> = ({ user }) => {
   const router = useRouter();
   const { register, handleSubmit } = useForm<Inputs>();
 
-  const [qrCode, setQrCode] = useState<QRCode | null>(null);
+  const [qrCode, setQrCode] = useState<Inputs | null>(null);
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    fetch("/api/qr-code/preview", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: data.name,
-        link: data.link,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setQrCode(data);
-      })
-      .catch((err) => console.log(err));
+    setQrCode({ name: data.name, url: data.url });
   };
 
-  const onConfirm = (qrCode: QRCode) => {
+  const onConfirm = (qrCode: Inputs) => {
+    const qrCodeCanvas = document.querySelector("canvas");
+    const qrCodeImage = qrCodeCanvas?.toDataURL("image/png");
+
     fetch("/api/qr-code/create", {
       method: "POST",
       headers: {
@@ -46,7 +34,8 @@ const QRCreator: NextPage<{ user: User }> = ({ user }) => {
       body: JSON.stringify({
         user,
         name: qrCode.name,
-        link: qrCode.url,
+        url: qrCode.url,
+        image: qrCodeImage,
       }),
     })
       .then((res) => res.json())
@@ -58,6 +47,14 @@ const QRCreator: NextPage<{ user: User }> = ({ user }) => {
 
   return (
     <>
+      {user.credits === 0 && (
+        <div className="mb-6 flex flex-col items-center justify-center">
+          <h1 className="text-center font-bold text-red-700">
+            You won&apos;t be able to save or download your QR Code without a
+            credit.
+          </h1>
+        </div>
+      )}
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
         <input
           type="text"
@@ -68,7 +65,7 @@ const QRCreator: NextPage<{ user: User }> = ({ user }) => {
         <input
           type="url"
           placeholder="Enter Link"
-          {...register("link", { required: true })}
+          {...register("url", { required: true })}
           className="my-2 rounded border-2 border-gray-300 p-2 text-neutral-900"
         />
         <motion.button
@@ -90,15 +87,34 @@ const QRCreator: NextPage<{ user: User }> = ({ user }) => {
             >
               {qrCode.url}
             </Link>
-            <Image src={qrCode.image} alt="QR Code" width={300} height={300} />
+            <QRCodeCanvas
+              value={qrCode.url}
+              size={300}
+              level={"Q"}
+              style={{ border: "8px solid #FFF" }}
+            />
           </div>
-          {user.credits > 0 && (
+
+          {user.credits <= 0 ? (
+            <form
+              action="/api/checkout/credits"
+              method="POST"
+              className="flex flex-col items-center"
+            >
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                className="mt-auto mb-6 w-full rounded bg-red-700 p-2"
+              >
+                Purchase Credit
+              </motion.button>
+            </form>
+          ) : (
             <motion.button
               whileTap={{ scale: 0.95 }}
               onClick={() => onConfirm(qrCode)}
               className="mt-auto mb-6 rounded bg-blue-700 p-2"
             >
-              Use credit to save this QR Code
+              Save QR Code
             </motion.button>
           )}
         </div>

@@ -22,8 +22,7 @@ const Websites: NextPage<{ user: UserWithWebsites }> = ({ user }) => {
         {user.plan === "Beginner" && (
           <div className="flex flex-col items-center justify-center">
             <h1 className="mb-6 text-center text-xl font-bold leading-none text-neutral-900">
-              You are on the <span className="text-blue-700">Beginner</span>{" "}
-              plan
+              Beginner Plan
             </h1>
             <p className="mb-6 text-center text-lg font-medium text-neutral-900">
               You can create one website but would need to upgrade your plan to
