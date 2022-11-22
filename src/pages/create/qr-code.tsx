@@ -17,6 +17,7 @@ const QRCreator: NextPage<{ user: User }> = ({ user }) => {
   const { register, handleSubmit } = useForm<Inputs>();
 
   const [qrCode, setQrCode] = useState<Inputs | null>(null);
+  const [showingConfirmation, setShowingConfirmation] = useState(false);
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     setQrCode({ name: data.name, url: data.url });
@@ -39,9 +40,7 @@ const QRCreator: NextPage<{ user: User }> = ({ user }) => {
       }),
     })
       .then((res) => res.json())
-      .then((data) => {
-        router.push(`/qr-codes/${data.id}`);
-      })
+      .then((data) => router.push(`/qr-codes/${data.id}`))
       .catch((err) => console.log(err));
   };
 
@@ -61,12 +60,14 @@ const QRCreator: NextPage<{ user: User }> = ({ user }) => {
           placeholder="Enter Name of QR Code"
           {...register("name", { required: true })}
           className="my-2 rounded border-2 border-gray-300 p-2 text-neutral-900"
+          defaultValue={"QLink"}
         />
         <input
           type="url"
           placeholder="Enter Link"
           {...register("url", { required: true })}
           className="my-2 rounded border-2 border-gray-300 p-2 text-neutral-900"
+          defaultValue={"https://qlink.tech"}
         />
         <motion.button
           whileTap={{ scale: 0.95 }}
@@ -109,13 +110,34 @@ const QRCreator: NextPage<{ user: User }> = ({ user }) => {
               </motion.button>
             </form>
           ) : (
-            <motion.button
-              whileTap={{ scale: 0.95 }}
-              onClick={() => onConfirm(qrCode)}
-              className="mt-auto mb-6 rounded bg-blue-700 p-2"
-            >
-              Save QR Code
-            </motion.button>
+            <>
+              {!showingConfirmation ? (
+                <motion.button
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setShowingConfirmation(true)}
+                  className="mt-auto mb-6 rounded bg-blue-700 p-2"
+                >
+                  Save QR Code
+                </motion.button>
+              ) : (
+                <div className="mb-6 flex gap-2">
+                  <motion.button
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => onConfirm(qrCode)}
+                    className="mt-auto w-1/2 rounded bg-blue-700 p-2"
+                  >
+                    Use Credit
+                  </motion.button>
+                  <motion.button
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setShowingConfirmation(false)}
+                    className="mt-auto w-1/2 rounded bg-red-700 p-2"
+                  >
+                    Cancel
+                  </motion.button>
+                </div>
+              )}
+            </>
           )}
         </div>
       )}
