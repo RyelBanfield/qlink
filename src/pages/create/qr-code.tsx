@@ -10,7 +10,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import { prisma } from "../../server/db/client";
 
-type Inputs = { name: string; url: string };
+type Inputs = { name: string; url: string; image?: string };
 
 const QRCreator: NextPage<{ user: User }> = ({ user }) => {
   const router = useRouter();
@@ -20,6 +20,24 @@ const QRCreator: NextPage<{ user: User }> = ({ user }) => {
   const [showingConfirmation, setShowingConfirmation] = useState(false);
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
+    if (data.image && data.image.length > 0) {
+      const reader = new FileReader();
+      const blob = new Blob([data.image[0] as BlobPart], {
+        type: "image/png",
+      });
+      reader.readAsDataURL(blob);
+
+      reader.onload = () => {
+        setQrCode({
+          name: data.name,
+          url: data.url,
+          image: reader.result as string,
+        });
+      };
+
+      return;
+    }
+
     setQrCode({ name: data.name, url: data.url });
   };
 
@@ -54,20 +72,27 @@ const QRCreator: NextPage<{ user: User }> = ({ user }) => {
           </h1>
         </div>
       )}
+
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
         <input
           type="text"
           placeholder="Enter Name of QR Code"
           {...register("name", { required: true })}
-          className="my-2 rounded border-2 border-gray-300 p-2 text-neutral-900"
+          className="my-2 rounded border-2 border-gray-300 p-2 text-neutral-900 placeholder:italic placeholder:text-slate-400"
           defaultValue={"QLink"}
         />
         <input
           type="url"
           placeholder="Enter Link"
           {...register("url", { required: true })}
-          className="my-2 rounded border-2 border-gray-300 p-2 text-neutral-900"
+          className="my-2 rounded border-2 border-gray-300 p-2 text-neutral-900 placeholder:italic placeholder:text-slate-400"
           defaultValue={"https://qlink.tech"}
+        />
+        <input
+          type="file"
+          accept="image/*"
+          {...register("image")}
+          className="block w-full text-sm text-slate-400 file:mr-4 file:rounded file:border-0 file:bg-blue-50 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-blue-700 hover:file:bg-blue-100"
         />
         <motion.button
           whileTap={{ scale: 0.95 }}
@@ -82,18 +107,37 @@ const QRCreator: NextPage<{ user: User }> = ({ user }) => {
         <div className="mt-8 flex flex-grow flex-col border-t-2 border-neutral-100">
           <div className="my-10 flex flex-col items-center justify-center">
             <p className="mb-2 text-2xl font-bold">{qrCode.name}</p>
+
             <Link
               href={qrCode.url}
               className="mb-6 text-blue-800 hover:underline"
             >
               {qrCode.url}
             </Link>
-            <QRCodeCanvas
-              value={qrCode.url}
-              size={300}
-              level={"Q"}
-              style={{ border: "8px solid #FFF" }}
-            />
+
+            {!qrCode.image && (
+              <QRCodeCanvas
+                value={qrCode.url}
+                size={300}
+                level={"Q"}
+                style={{ border: "8px solid #FFF" }}
+              />
+            )}
+
+            {qrCode.image && (
+              <QRCodeCanvas
+                value={qrCode.url}
+                size={300}
+                level={"Q"}
+                style={{ border: "8px solid #FFF" }}
+                imageSettings={{
+                  src: qrCode.image,
+                  height: 50,
+                  width: 50,
+                  excavate: true,
+                }}
+              />
+            )}
           </div>
 
           {user.credits <= 0 ? (

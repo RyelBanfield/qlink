@@ -24,7 +24,7 @@ const QRCodePage: NextPage<{ qrCode: QrCode }> = ({ qrCode }) => {
           value={qrCode.url}
           size={300}
           level={"Q"}
-          style={{ border: "8px solid #FFF" }}
+          style={{ border: "8px solid #fff" }}
         />
       </div>
       <a
