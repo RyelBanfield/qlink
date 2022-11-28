@@ -26,7 +26,7 @@ const QRCodePage: NextPage<{ qrCode: QrCode }> = ({ qrCode }) => {
           src={qrCode.qrCodeImage}
           width={300}
           height={300}
-          className="border-8"
+          className="border-8 border-white"
         />
       </div>
 
