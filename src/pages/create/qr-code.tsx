@@ -14,7 +14,11 @@ type Inputs = { name: string; url: string; image?: string };
 
 const QRCreator: NextPage<{ user: User }> = ({ user }) => {
   const router = useRouter();
-  const { register, handleSubmit } = useForm<Inputs>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
 
   const [qrCode, setQrCode] = useState<Inputs | null>(null);
   const [showingConfirmation, setShowingConfirmation] = useState(false);
@@ -54,7 +58,8 @@ const QRCreator: NextPage<{ user: User }> = ({ user }) => {
         user,
         name: qrCode.name,
         url: qrCode.url,
-        image: qrCodeImage,
+        image: qrCode.image || null,
+        qrCodeImage,
       }),
     })
       .then((res) => res.json())
@@ -77,10 +82,16 @@ const QRCreator: NextPage<{ user: User }> = ({ user }) => {
         <input
           type="text"
           placeholder="Enter Name of QR Code"
-          {...register("name", { required: true })}
+          {...register("name", { required: true, minLength: 3, maxLength: 20 })}
           className="my-2 rounded border-2 border-gray-300 p-2 text-neutral-900 placeholder:italic placeholder:text-slate-400"
           defaultValue={"QLink"}
         />
+        {errors.name && (
+          <p className="text-sm text-red-700">
+            Name should be between 3 and 20 characters.
+          </p>
+        )}
+
         <input
           type="url"
           placeholder="Enter Link"
@@ -88,12 +99,14 @@ const QRCreator: NextPage<{ user: User }> = ({ user }) => {
           className="my-2 rounded border-2 border-gray-300 p-2 text-neutral-900 placeholder:italic placeholder:text-slate-400"
           defaultValue={"https://qlink.tech"}
         />
+
         <input
           type="file"
           accept="image/*"
           {...register("image")}
-          className="block w-full text-sm text-slate-400 file:mr-4 file:rounded file:border-0 file:bg-blue-50 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-blue-700 hover:file:bg-blue-100"
+          className="my-2 block w-full text-sm text-slate-400 file:mr-4 file:rounded file:border-0 file:bg-blue-50 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-blue-700 hover:file:bg-blue-100"
         />
+
         <motion.button
           whileTap={{ scale: 0.95 }}
           type="submit"
