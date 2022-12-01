@@ -34,7 +34,7 @@ const QRCodes: NextPage<{ user: UserWithQrCodes }> = ({ user }) => {
               </p>
             </div>
 
-            <div className="flex justify-evenly">
+            <div className="flex flex-wrap justify-evenly gap-2">
               <form
                 action="/api/checkout/credits"
                 method="POST"

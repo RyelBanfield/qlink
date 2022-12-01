@@ -15,7 +15,7 @@ const Dashboard: NextPage<{ user: User }> = ({}) => {
           Dashboard
         </h1>
 
-        <div className="flex justify-evenly">
+        <div className="flex flex-wrap justify-evenly gap-2">
           <motion.button
             whileTap={{ scale: 0.95 }}
             className="h-12 w-44 rounded bg-blue-700 text-center font-semibold"
