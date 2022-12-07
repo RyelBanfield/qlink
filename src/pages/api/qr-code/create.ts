@@ -1,4 +1,4 @@
-import { User } from "@prisma/client";
+import { QrCode, User } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "../../../server/db/client";
@@ -8,7 +8,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === "POST") {
       const user = req.body.user as User;
 
-      const { name, url, image, qrCodeImage } = req.body;
+      const { name, url, image, qrCodeImage } = req.body as QrCode;
 
       const qrCode = await prisma.qrCode.create({
         data: {
