@@ -14,6 +14,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
   });
 
+  if (!website || (website && website.published === false)) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: { website: JSON.parse(JSON.stringify(website)) },
   };
