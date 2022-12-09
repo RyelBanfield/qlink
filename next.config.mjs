@@ -20,7 +20,5 @@ export default defineNextConfig({
     locales: ["en"],
     defaultLocale: "en",
   },
-  images: {
-    domains: ["avatars.dicebear.com"],
-  },
+
 });
