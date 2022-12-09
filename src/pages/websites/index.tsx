@@ -5,11 +5,12 @@ import Link from "next/link";
 import { getSession } from "next-auth/react";
 
 import Card from "../../components/Card";
+import WebsiteCard from "../../components/WebsiteCard";
 import { prisma } from "../../server/db/client";
 
 const userWithWebsites = Prisma.validator<Prisma.UserArgs>()({
   include: {
-    qrCodes: true,
+    websites: true,
   },
 });
 
@@ -19,7 +20,7 @@ const Websites: NextPage<{ user: UserWithWebsites }> = ({ user }) => {
   return (
     <>
       <Card>
-        {user.plan === "Beginner" && (
+        {user.plan === "Beginner" && user.websites.length === 0 ? (
           <div className="flex flex-col items-center justify-center">
             <h1 className="mb-6 text-center text-xl font-bold leading-none text-neutral-900">
               Beginner Plan
@@ -40,8 +41,33 @@ const Websites: NextPage<{ user: UserWithWebsites }> = ({ user }) => {
               </Link>
             </motion.button>
           </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center">
+            <h1 className="mb-6 text-center text-xl font-bold leading-none text-neutral-900">
+              Beginner Plan
+            </h1>
+            <p className="mb-6 text-center text-lg font-medium text-neutral-900">
+              You have created a website. View it below.
+            </p>
+          </div>
         )}
       </Card>
+
+      <h2 className="my-6 text-center text-xl font-bold text-neutral-100">
+        Your Websites
+      </h2>
+
+      {user.websites.length === 0 && (
+        <Card>
+          <p className="text-center font-medium text-neutral-900">
+            You have not created any websites yet.
+          </p>
+        </Card>
+      )}
+
+      {user.websites.map((website) => (
+        <WebsiteCard key={website.id} website={website} />
+      ))}
     </>
   );
 };
