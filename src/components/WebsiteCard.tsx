@@ -24,7 +24,7 @@ const WebsiteCard = ({ website }: { website: Website }) => {
 
   return (
     <div className="mb-6 flex flex-col rounded bg-neutral-100 p-4 sm:flex-row sm:items-center sm:justify-between">
-      <div className="mb-3 flex gap-2 sm:mb-0">
+      <div className="mb-3 flex gap-3 sm:mb-0">
         <Image
           src={website.image}
           alt={website.name}
@@ -56,7 +56,18 @@ const WebsiteCard = ({ website }: { website: Website }) => {
           </p>
         </div>
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-3">
+        <motion.button
+          whileTap={{ scale: 0.95 }}
+          className="h-12 w-full rounded bg-blue-700 text-center font-semibold sm:w-44"
+        >
+          <Link
+            href={`/websites/${website.name}`}
+            className="flex h-full w-full items-center justify-center"
+          >
+            View
+          </Link>
+        </motion.button>
         <motion.button
           whileTap={{ scale: 0.95 }}
           className="h-12 w-full rounded bg-blue-700 text-center font-semibold sm:w-44"
