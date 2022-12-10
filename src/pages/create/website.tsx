@@ -2,7 +2,7 @@ import { User, Website } from "@prisma/client";
 import { motion } from "framer-motion";
 import { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import { prisma } from "../../server/db/client";
 
 const WebsiteCreator: NextPage<{ user: User }> = ({ user }) => {
-  // const router = useRouter();
+  const router = useRouter();
   const { register, handleSubmit } = useForm<Website>();
 
   const [website, setWebsite] = useState<Website | null>(null);
@@ -54,7 +54,7 @@ const WebsiteCreator: NextPage<{ user: User }> = ({ user }) => {
       }),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then(() => router.push(`/websites`))
       .catch((err) => console.log(err));
   };
 
