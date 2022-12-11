@@ -1,4 +1,5 @@
 import { Website } from "@prisma/client";
+import classnames from "classnames";
 import { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
 import { getSession } from "next-auth/react";
@@ -8,7 +9,12 @@ import { prisma } from "../../server/db/client";
 const EditWebsite: NextPage<{ website: Website }> = ({ website }) => {
   return (
     <>
-      <div className="absolute left-0 top-0 flex h-full w-full bg-neutral-100">
+      <div
+        className={classnames("absolute left-0 top-0 flex h-full w-full", {
+          "bg-neutral-100 text-neutral-900": website.theme === "light",
+          "bg-neutral-900 text-neutral-100": website.theme === "dark",
+        })}
+      >
         <div className="flex flex-grow flex-col items-center pt-12">
           <Image
             src={website.image}
@@ -17,7 +23,7 @@ const EditWebsite: NextPage<{ website: Website }> = ({ website }) => {
             alt="Website Logo"
             className="mb-6 rounded-full"
           />
-          <h1 className="text-lg font-bold text-neutral-900">{website.name}</h1>
+          <h1 className="text-lg font-bold">{website.name}</h1>
         </div>
       </div>
     </>
