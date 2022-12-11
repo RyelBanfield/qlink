@@ -51,6 +51,7 @@ const WebsiteCreator: NextPage<{ user: User }> = ({ user }) => {
         user,
         image: website.image,
         name: website.name,
+        theme: website.theme,
       }),
     })
       .then((res) => res.json())
@@ -110,6 +111,29 @@ const WebsiteCreator: NextPage<{ user: User }> = ({ user }) => {
               })}
               className="mb-4 rounded border-2 border-gray-900 p-2 text-neutral-900"
             />
+            <div className="mb-4 flex gap-2">
+              <input
+                type="radio"
+                id="light"
+                {...register("theme", { required: true })}
+                value="light"
+                defaultChecked
+                className="rounded border-2 border-gray-900 p-2 text-neutral-900"
+              />
+              <label htmlFor="light" className="text-neutral-900">
+                Light
+              </label>
+              <input
+                type="radio"
+                id="dark"
+                {...register("theme", { required: true })}
+                value="dark"
+                className="rounded border-2 border-gray-900 p-2 text-neutral-900"
+              />
+              <label htmlFor="dark" className="text-neutral-900">
+                Dark
+              </label>
+            </div>
 
             {!website && (
               <div className="mt-auto">

@@ -8,8 +8,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === "POST") {
       const user = req.body.user as User;
 
-      const { image, name } = req.body as Website;
-      const url = `https://qlink.tech/websites/${name
+      const { image, name, theme } = req.body as Website;
+      const url = `http://localhost:3000/websites/${name
         .toLowerCase()
         .replace(/[^a-zA-Z0-9 ]/g, "")
         .replace(/ /g, "-")}`;
@@ -19,6 +19,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           image,
           name,
           url,
+          theme,
           qrCode: "",
           user: {
             connect: {
