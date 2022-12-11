@@ -4,7 +4,7 @@ import { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
 import { getSession } from "next-auth/react";
 
-import { prisma } from "../../server/db/client";
+import { prisma } from "../server/db/client";
 
 const EditWebsite: NextPage<{ website: Website }> = ({ website }) => {
   return (

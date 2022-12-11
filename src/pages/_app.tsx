@@ -27,7 +27,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {!router.pathname.includes("websites/") && <Header />}
+      {!router.pathname.includes("/[name]") && <Header />}
       <motion.main
         key={router.route}
         initial="pageInitial"

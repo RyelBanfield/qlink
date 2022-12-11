@@ -62,7 +62,7 @@ const WebsiteCard = ({ website }: { website: Website }) => {
           className="h-12 w-full rounded bg-blue-700 text-center font-semibold sm:w-44"
         >
           <Link
-            href={`/websites/${website.name}`}
+            href={`/${website.name}`}
             className="flex h-full w-full items-center justify-center"
           >
             View
