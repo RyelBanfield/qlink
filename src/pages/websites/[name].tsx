@@ -1,11 +1,27 @@
 import { Website } from "@prisma/client";
 import { GetServerSideProps, NextPage } from "next";
+import Image from "next/image";
 import { getSession } from "next-auth/react";
 
 import { prisma } from "../../server/db/client";
 
 const EditWebsite: NextPage<{ website: Website }> = ({ website }) => {
-  return <div>{website.name}</div>;
+  return (
+    <>
+      <div className="absolute left-0 top-0 flex h-full w-full bg-neutral-100">
+        <div className="flex flex-grow flex-col items-center pt-12">
+          <Image
+            src={website.image}
+            width={75}
+            height={75}
+            alt="Website Logo"
+            className="mb-6 rounded-full"
+          />
+          <h1 className="text-lg font-bold text-neutral-900">{website.name}</h1>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
