@@ -30,7 +30,12 @@ const Hero = () => {
             whileTap={{ scale: 0.95 }}
             className="w-full rounded bg-blue-800 p-2 text-center font-bold hover:bg-blue-600 sm:w-48"
           >
-            <Link href="/dashboard">Go to Dashboard</Link>
+            <Link
+              href="/dashboard"
+              className="flex h-full w-full items-center justify-center"
+            >
+              Go to Dashboard
+            </Link>
           </motion.button>
         )}
       </div>
