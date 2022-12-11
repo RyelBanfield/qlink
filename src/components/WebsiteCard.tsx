@@ -30,7 +30,7 @@ const WebsiteCard = ({ website }: { website: Website }) => {
           alt={website.name}
           width={50}
           height={50}
-          className="rounded-full"
+          className="w-16 rounded-full"
         />
         <div>
           <h4 className="text-lg font-semibold text-neutral-900">
