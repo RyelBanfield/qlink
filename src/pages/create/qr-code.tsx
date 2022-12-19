@@ -84,7 +84,6 @@ const QRCreator: NextPage<{ user: User }> = ({ user }) => {
           placeholder="Enter Name of QR Code"
           {...register("name", { required: true, minLength: 3, maxLength: 20 })}
           className="my-2 rounded border-2 border-gray-300 p-2 text-neutral-900 placeholder:italic placeholder:text-slate-400"
-          defaultValue={"QLink"}
         />
         {errors.name && (
           <p className="text-sm text-red-700">
@@ -97,7 +96,6 @@ const QRCreator: NextPage<{ user: User }> = ({ user }) => {
           placeholder="Enter Link"
           {...register("url", { required: true })}
           className="my-2 rounded border-2 border-gray-300 p-2 text-neutral-900 placeholder:italic placeholder:text-slate-400"
-          defaultValue={"https://qlink.tech"}
         />
 
         <input
