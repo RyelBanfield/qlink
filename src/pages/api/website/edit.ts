@@ -11,6 +11,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         },
         data: {
           theme: req.body.theme,
+          linkedWebsite: req.body.linkedWebsite,
+          linkedFacebook: req.body.linkedFacebook,
+          linkedInstagram: req.body.linkedInstagram,
+          linkedTwitter: req.body.linkedTwitter,
+          linkedLinkedin: req.body.linkedLinkedin,
+          linkedEmail: req.body.linkedEmail,
         },
       });
 
