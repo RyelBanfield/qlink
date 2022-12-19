@@ -21,6 +21,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           url,
           theme,
           qrCode: "",
+          linkedWebsite: "",
+          linkedFacebook: "",
+          linkedInstagram: "",
+          linkedTwitter: "",
+          linkedLinkedin: "",
+          linkedEmail: "",
           user: {
             connect: {
               id: user.id,
