@@ -60,34 +60,24 @@ model QrCode {
     @@index([userId])
 }
 
-model Link {
-    id        String   @id @default(cuid())
-    userId    String
-    websiteId String
-    name      String
-    url       String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-    website   Website  @relation(fields: [websiteId], references: [id], onDelete: Cascade)
-
-    @@index([userId])
-    @@index([websiteId])
-}
-
 model Website {
-    id        String   @id @default(cuid())
-    userId    String
-    name      String   @unique
-    image     String   @db.Text
-    url       String   @unique
-    links     Link[]
-    qrCode    String   @db.Text
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-    published Boolean  @default(false)
-    theme     String   @default("light")
+    id              String   @id @default(cuid())
+    userId          String
+    name            String   @unique
+    image           String   @db.Text
+    url             String   @unique
+    qrCode          String   @db.Text
+    createdAt       DateTime @default(now())
+    updatedAt       DateTime @updatedAt
+    user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    published       Boolean  @default(false)
+    theme           String   @default("light")
+    linkedWebsite   String
+    linkedFacebook  String
+    linkedInstagram String
+    linkedTwitter   String
+    linkedLinkedin  String
+    linkedEmail     String
 
     @@index([userId])
 }
@@ -104,6 +94,5 @@ model User {
     plan          String    @default("Beginner")
     qrCodes       QrCode[]
     websites      Website[]
-    Links         Link[]
     isAdmin       Boolean   @default(false)
 }
