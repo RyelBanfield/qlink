@@ -1,8 +1,7 @@
 import { Website } from "@prisma/client";
-import classnames from "classnames";
 import { motion } from "framer-motion";
 import { GetServerSideProps, NextPage } from "next";
-import Image from "next/image";
+import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -15,11 +14,62 @@ import {
 } from "react-icons/bs";
 import { CgWebsite } from "react-icons/cg";
 
+import MobileDisplay from "../../../components/MobileDisplay";
 import { prisma } from "../../../server/db/client";
 
 const EditWebsite: NextPage<{ website: Website }> = ({ website }) => {
+  const router = useRouter();
   const [theme, setTheme] = useState<typeof website.theme>(website.theme);
-  const [websiteUpdated, setWebsiteUpdated] = useState<boolean>(false);
+  const [links] = useState({
+    linkedWebsite:
+      website.linkedWebsite !== ""
+        ? {
+            type: "Website",
+            link: website.linkedWebsite,
+            icon: <CgWebsite className="inline-block" />,
+          }
+        : null,
+    linkedFacebook:
+      website.linkedFacebook !== ""
+        ? {
+            type: "Facebook",
+            link: website.linkedFacebook,
+            icon: <BsFacebook className="inline-block" />,
+          }
+        : null,
+    linkedInstagram:
+      website.linkedInstagram !== ""
+        ? {
+            type: "Instagram",
+            link: website.linkedInstagram,
+            icon: <BsInstagram className="inline-block" />,
+          }
+        : null,
+    linkedTwitter:
+      website.linkedTwitter !== ""
+        ? {
+            type: "Twitter",
+            link: website.linkedTwitter,
+            icon: <BsTwitter className="inline-block" />,
+          }
+        : null,
+    linkedLinkedin:
+      website.linkedLinkedin !== ""
+        ? {
+            type: "Linkedin",
+            link: website.linkedLinkedin,
+            icon: <BsLinkedin className="inline-block" />,
+          }
+        : null,
+    linkedEmail:
+      website.linkedEmail !== ""
+        ? {
+            type: "Email",
+            link: website.linkedEmail,
+            icon: <BsEnvelope className="inline-block" />,
+          }
+        : null,
+  });
 
   const { register, handleSubmit } = useForm<Website>();
 
@@ -41,85 +91,14 @@ const EditWebsite: NextPage<{ website: Website }> = ({ website }) => {
       }),
     })
       .then((res) => res.json())
-      .then(() => {
-        setWebsiteUpdated(true);
-        setTimeout(() => {
-          setWebsiteUpdated(false);
-        }, 3000);
-      })
+      .then(() => router.reload())
       .catch((err) => console.log(err));
   };
 
   return (
     <>
-      {/* Display */}
-      <div
-        className={classnames(
-          "mx-auto mb-6 flex h-[450px] w-1/2 min-w-[220px] flex-col items-center rounded-3xl border-8 border-neutral-800 pt-8",
-          {
-            "bg-neutral-100 text-neutral-900": theme === "light",
-            "bg-neutral-900 text-neutral-100": theme === "dark",
-          }
-        )}
-      >
-        <Image
-          src={website.image}
-          width={50}
-          height={50}
-          alt="Website Logo"
-          className="mb-4 rounded-full"
-        />
-        <h1 className="font-bold">{website.name}</h1>
-        <div className="flex gap-2">
-          {website.linkedWebsite && (
-            <a
-              href={website.linkedWebsite}
-              target="_blank"
-              rel="noreferrer"
-              className="mb-2"
-            >
-              <CgWebsite className="inline-block" />
-            </a>
-          )}
-          {website.linkedFacebook && (
-            <a
-              href={website.linkedFacebook}
-              target="_blank"
-              rel="noreferrer"
-              className="mb-2"
-            >
-              <BsFacebook className="inline-block" />
-            </a>
-          )}
-        </div>
-        <div className="flex w-full flex-col gap-2 px-6">
-          {website.linkedWebsite && (
-            <div className="w-full rounded border p-2 text-center">
-              <a
-                href={website.linkedWebsite}
-                target="_blank"
-                rel="noreferrer"
-                className="flex w-full items-center gap-2"
-              >
-                <CgWebsite className="inline-block" />
-                <span className="text-center">Website</span>
-              </a>
-            </div>
-          )}
-          {website.linkedFacebook && (
-            <a
-              href={website.linkedFacebook}
-              target="_blank"
-              rel="noreferrer"
-              className="mb-2"
-            >
-              <BsFacebook className="inline-block" />
-            </a>
-          )}
-        </div>
-      </div>
+      <MobileDisplay theme={theme} website={website} links={links} />
 
-      {/* Form */}
       <form
         onSubmit={handleSubmit(updateWebsite)}
         className="flex flex-grow flex-col rounded bg-neutral-100 p-4 text-neutral-900"
@@ -235,7 +214,7 @@ const EditWebsite: NextPage<{ website: Website }> = ({ website }) => {
             whileTap={{ scale: 0.95 }}
             className="w-full rounded bg-blue-700 p-2 text-neutral-100"
           >
-            {websiteUpdated ? "Website Updated!" : "Update Website"}
+            Update
           </motion.button>
         </div>
       </form>
