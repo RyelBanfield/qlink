@@ -97,127 +97,129 @@ const EditWebsite: NextPage<{ website: Website }> = ({ website }) => {
 
   return (
     <>
-      <MobileDisplay theme={theme} website={website} links={links} />
+      <div className="flex flex-grow flex-col sm:flex-row">
+        <MobileDisplay theme={theme} website={website} links={links} />
 
-      <form
-        onSubmit={handleSubmit(updateWebsite)}
-        className="flex flex-grow flex-col rounded bg-neutral-100 p-4 text-neutral-900"
-      >
-        {/* Theme */}
-        <div className="mb-3 flex gap-2">
-          <label className="flex gap-2 text-neutral-900">
-            <input
-              type="radio"
-              id="light"
-              {...register("theme", {
-                required: true,
-                onChange: (e) => {
-                  setTheme(e.target.value);
-                },
-              })}
-              value="light"
-              defaultChecked={theme === "light"}
-              className="rounded border-2 border-gray-900 p-2 text-neutral-900"
-            />
-            Light
-          </label>
-          <label className="flex gap-2 text-neutral-900">
-            <input
-              type="radio"
-              id="dark"
-              {...register("theme", {
-                required: true,
-                onChange: (e) => {
-                  setTheme(e.target.value);
-                },
-              })}
-              value="dark"
-              defaultChecked={theme === "dark"}
-              className="rounded border-2 border-gray-900 p-2 text-neutral-900"
-            />
-            Dark
-          </label>
-        </div>
+        <form
+          onSubmit={handleSubmit(updateWebsite)}
+          className="flex max-h-[600px] max-w-[600px] flex-grow flex-col rounded bg-neutral-100 p-4 text-neutral-900"
+        >
+          {/* Theme */}
+          <div className="mb-3 flex gap-2">
+            <label className="flex gap-2 text-neutral-900">
+              <input
+                type="radio"
+                id="light"
+                {...register("theme", {
+                  required: true,
+                  onChange: (e) => {
+                    setTheme(e.target.value);
+                  },
+                })}
+                value="light"
+                defaultChecked={theme === "light"}
+                className="rounded border-2 border-gray-900 p-2 text-neutral-900"
+              />
+              Light
+            </label>
+            <label className="flex gap-2 text-neutral-900">
+              <input
+                type="radio"
+                id="dark"
+                {...register("theme", {
+                  required: true,
+                  onChange: (e) => {
+                    setTheme(e.target.value);
+                  },
+                })}
+                value="dark"
+                defaultChecked={theme === "dark"}
+                className="rounded border-2 border-gray-900 p-2 text-neutral-900"
+              />
+              Dark
+            </label>
+          </div>
 
-        {/* Links */}
-        <div className="mb-3">
-          <label className="mb-3 flex items-center gap-2">
-            <CgWebsite className="mr-2 inline-block text-2xl" />
-            <input
-              type="url"
-              placeholder="Website"
-              defaultValue={website.linkedWebsite}
-              {...register("linkedWebsite")}
-              className="w-full rounded border p-2"
-            />
-          </label>
+          {/* Links */}
+          <div className="mb-3">
+            <label className="mb-3 flex items-center gap-2">
+              <CgWebsite className="mr-2 inline-block text-2xl" />
+              <input
+                type="url"
+                placeholder="Website"
+                defaultValue={website.linkedWebsite}
+                {...register("linkedWebsite")}
+                className="w-full rounded border p-2"
+              />
+            </label>
 
-          <label className="mb-3 flex items-center gap-2">
-            <BsFacebook className="mr-2 inline-block text-2xl" />
-            <input
-              type="url"
-              placeholder="Facebook"
-              defaultValue={website.linkedFacebook}
-              {...register("linkedFacebook")}
-              className="w-full rounded border p-2"
-            />
-          </label>
+            <label className="mb-3 flex items-center gap-2">
+              <BsFacebook className="mr-2 inline-block text-2xl" />
+              <input
+                type="url"
+                placeholder="Facebook"
+                defaultValue={website.linkedFacebook}
+                {...register("linkedFacebook")}
+                className="w-full rounded border p-2"
+              />
+            </label>
 
-          <label className="mb-3 flex items-center gap-2">
-            <BsInstagram className="mr-2 inline-block text-2xl" />
-            <input
-              type="url"
-              placeholder="Instagram"
-              defaultValue={website.linkedInstagram}
-              {...register("linkedInstagram")}
-              className="w-full rounded border p-2"
-            />
-          </label>
+            <label className="mb-3 flex items-center gap-2">
+              <BsInstagram className="mr-2 inline-block text-2xl" />
+              <input
+                type="url"
+                placeholder="Instagram"
+                defaultValue={website.linkedInstagram}
+                {...register("linkedInstagram")}
+                className="w-full rounded border p-2"
+              />
+            </label>
 
-          <label className="mb-3 flex items-center gap-2">
-            <BsTwitter className="mr-2 inline-block text-2xl" />
-            <input
-              type="url"
-              placeholder="Twitter"
-              defaultValue={website.linkedTwitter}
-              {...register("linkedTwitter")}
-              className="w-full rounded border p-2"
-            />
-          </label>
+            <label className="mb-3 flex items-center gap-2">
+              <BsTwitter className="mr-2 inline-block text-2xl" />
+              <input
+                type="url"
+                placeholder="Twitter"
+                defaultValue={website.linkedTwitter}
+                {...register("linkedTwitter")}
+                className="w-full rounded border p-2"
+              />
+            </label>
 
-          <label className="mb-3 flex items-center gap-2">
-            <BsLinkedin className="mr-2 inline-block text-2xl" />
-            <input
-              type="url"
-              placeholder="Linkedin"
-              defaultValue={website.linkedLinkedin}
-              {...register("linkedLinkedin")}
-              className="w-full rounded border p-2"
-            />
-          </label>
+            <label className="mb-3 flex items-center gap-2">
+              <BsLinkedin className="mr-2 inline-block text-2xl" />
+              <input
+                type="url"
+                placeholder="Linkedin"
+                defaultValue={website.linkedLinkedin}
+                {...register("linkedLinkedin")}
+                className="w-full rounded border p-2"
+              />
+            </label>
 
-          <label className="mb-3 flex items-center gap-2">
-            <BsEnvelope className="mr-2 inline-block text-2xl" />
-            <input
-              type="email"
-              placeholder="Email"
-              defaultValue={website.linkedEmail}
-              {...register("linkedEmail")}
-              className="w-full rounded border p-2"
-            />
-          </label>
-        </div>
+            <label className="mb-3 flex items-center gap-2">
+              <BsEnvelope className="mr-2 inline-block text-2xl" />
+              <input
+                type="email"
+                placeholder="Email"
+                defaultValue={website.linkedEmail}
+                {...register("linkedEmail")}
+                className="w-full rounded border p-2"
+              />
+            </label>
+          </div>
 
-        <div className="mt-auto">
-          <motion.button
-            type="submit"
-            whileTap={{ scale: 0.95 }}
-            className="w-full rounded bg-blue-700 p-2 text-neutral-100"
-          >
-            Update
-          </motion.button>
-        </div>
-      </form>
+          <div className="mt-auto">
+            <motion.button
+              type="submit"
+              whileTap={{ scale: 0.95 }}
+              className="w-full rounded bg-blue-700 p-2 text-neutral-100"
+            >
+              Update
+            </motion.button>
+          </div>
+        </form>
+      </div>
     </>
   );
 };

@@ -23,19 +23,27 @@ const WebsiteCard = ({ website }: { website: Website }) => {
   };
 
   return (
-    <div className="mb-6 flex flex-col rounded bg-neutral-100 p-4 sm:flex-row sm:items-center sm:justify-between">
-      <div className="mb-3 flex gap-3 sm:mb-0">
+    <div className="mb-6 flex flex-col rounded bg-neutral-100 p-4">
+      <div className="mb-6 flex gap-3">
         <Image
           src={website.image}
           alt={website.name}
-          width={50}
-          height={50}
-          className="w-16 rounded-full"
+          width={100}
+          height={100}
+          className="w-20 rounded-full"
         />
         <div>
           <h4 className="text-lg font-semibold text-neutral-900">
             {website.name}
           </h4>
+          <p
+            className={classnames("text-sm font-semibold", {
+              "text-green-700": published,
+              "text-red-700": !published,
+            })}
+          >
+            {published ? "Published" : "Not Published"}
+          </p>
           <a
             href={website.url}
             target="_blank"
@@ -45,21 +53,12 @@ const WebsiteCard = ({ website }: { website: Website }) => {
             {website.url}
           </a>
         </div>
-        <div className="ml-auto">
-          <p
-            className={classnames("text-sm font-semibold", {
-              "text-green-700": published,
-              "text-red-700": !published,
-            })}
-          >
-            {published ? "Published" : "Not Published"}
-          </p>
-        </div>
       </div>
-      <div className="flex gap-3">
+
+      <div className="flex justify-evenly gap-3">
         <motion.button
           whileTap={{ scale: 0.95 }}
-          className="h-12 w-full rounded bg-blue-700 text-center font-semibold sm:w-44"
+          className="h-12 w-full rounded bg-blue-700 text-center font-semibold"
         >
           <Link
             href={`/${website.name}`}
@@ -70,7 +69,7 @@ const WebsiteCard = ({ website }: { website: Website }) => {
         </motion.button>
         <motion.button
           whileTap={{ scale: 0.95 }}
-          className="h-12 w-full rounded bg-blue-700 text-center font-semibold sm:w-44"
+          className="h-12 w-full rounded bg-blue-700 text-center font-semibold"
         >
           <Link
             href={`/edit/website/${website.id}`}
@@ -82,7 +81,7 @@ const WebsiteCard = ({ website }: { website: Website }) => {
         <motion.button
           whileTap={{ scale: 0.95 }}
           onClick={handlePublishing}
-          className="h-12 w-full rounded bg-blue-700 text-center font-semibold sm:w-44"
+          className="h-12 w-full rounded bg-blue-700 text-center font-semibold"
         >
           {published ? "Unpublish" : "Publish"}
         </motion.button>

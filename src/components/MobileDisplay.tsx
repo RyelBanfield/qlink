@@ -45,7 +45,7 @@ const MobileDisplay = ({
   return (
     <div
       className={classNames(
-        "mx-auto mb-6 flex h-[450px] w-1/2 min-w-[220px] flex-col items-center rounded-3xl border-8 border-neutral-800 pt-8",
+        "mx-auto mb-6 flex h-[450px] w-1/2 min-w-[220px] max-w-[250px] flex-col items-center rounded-3xl border-8 border-neutral-800 pt-8",
         {
           "bg-neutral-100 text-neutral-900": theme === "light",
           "bg-neutral-900 text-neutral-100": theme === "dark",
