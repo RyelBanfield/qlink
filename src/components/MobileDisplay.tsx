@@ -45,7 +45,7 @@ const MobileDisplay = ({
   return (
     <div
       className={classNames(
-        "mx-auto mb-6 flex h-[450px] w-1/2 min-w-[220px] max-w-[250px] flex-col items-center rounded-3xl border-8 border-neutral-800 pt-8",
+        "no-scrollbar mx-auto mb-6 flex h-[450px] w-1/2 min-w-[220px] max-w-[250px] flex-col items-center overflow-y-auto rounded-3xl border-8 border-neutral-800 pt-8",
         {
           "bg-neutral-100 text-neutral-900": theme === "light",
           "bg-neutral-900 text-neutral-100": theme === "dark",
@@ -62,13 +62,17 @@ const MobileDisplay = ({
 
       <h1 className="mb-6 font-bold">{website.name}</h1>
 
-      <div className="flex w-full flex-col gap-2 px-6">
+      <div className="mb-6 flex w-full flex-col gap-2 px-6">
         {Object.entries(links).map(([key, value]) => {
           if (value) {
             return (
               <div key={key} className="w-full rounded border p-2 text-center">
                 <a
-                  href={value.link}
+                  href={
+                    value.type !== "Email"
+                      ? value.link
+                      : `mailto: ${value.link}`
+                  }
                   target="_blank"
                   rel="noreferrer"
                   className="flex w-full items-center gap-2"
