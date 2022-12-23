@@ -97,12 +97,12 @@ const EditWebsite: NextPage<{ website: Website }> = ({ website }) => {
 
   return (
     <>
-      <div className="flex flex-grow flex-col sm:flex-row">
+      <div className="flex flex-grow flex-col lg:flex-row">
         <MobileDisplay theme={theme} website={website} links={links} />
 
         <form
           onSubmit={handleSubmit(updateWebsite)}
-          className="flex max-h-[600px] max-w-[600px] flex-grow flex-col rounded bg-neutral-100 p-4 text-neutral-900"
+          className="mx-auto flex max-h-[600px] min-w-[420px] max-w-[600px] flex-grow flex-col rounded bg-neutral-100 p-4 text-neutral-900"
         >
           {/* Theme */}
           <div className="mb-3 flex gap-2">
