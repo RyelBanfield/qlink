@@ -1,18 +1,17 @@
 import { User, Website } from "@prisma/client";
 import { motion } from "framer-motion";
 import { GetServerSideProps, NextPage } from "next";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
+import CreateFormDisplay from "../../components/CreateFormDisplay";
 import { prisma } from "../../server/db/client";
 
 const WebsiteCreator: NextPage<{ user: User }> = ({ user }) => {
   const router = useRouter();
   const { register, handleSubmit } = useForm<Website>();
-
   const [website, setWebsite] = useState<Website | null>(null);
 
   const onSubmit = (data: Website) => {
@@ -61,28 +60,8 @@ const WebsiteCreator: NextPage<{ user: User }> = ({ user }) => {
 
   return (
     <>
-      <div className="flex flex-grow flex-col rounded bg-neutral-100 p-6">
-        {/* Display */}
-        <div className="mb-8 w-full sm:w-1/2">
-          <div className="m-auto flex h-[450px] w-1/2 min-w-[220px] flex-col items-center rounded-3xl border-8 border-neutral-800 bg-neutral-100 pt-8">
-            <Image
-              src={
-                website?.image && website.image.length > 0
-                  ? website.image
-                  : website?.name
-                  ? `https://avatars.dicebear.com/api/initials/${website.name}.svg`
-                  : `https://avatars.dicebear.com/api/initials/QLin.svg`
-              }
-              width={50}
-              height={50}
-              alt="Website Logo"
-              className="mb-4 rounded-full"
-            />
-            <h1 className="font-bold text-neutral-900">
-              {website?.name || "Name/Header"}
-            </h1>
-          </div>
-        </div>
+      <div className="flex flex-grow flex-col rounded bg-neutral-100 p-6 sm:flex-row">
+        <CreateFormDisplay website={website} />
 
         {/* Form */}
         <div className="flex w-full flex-grow flex-col sm:w-1/2">
@@ -188,10 +167,22 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     where: {
       id: session.user.id,
     },
+    include: {
+      websites: true,
+    },
   });
 
+  // if (user?.plan === "Beginner" && user.websites.length >= 1) {
+  //   return {
+  //     redirect: {
+  //       destination: "/websites",
+  //       permanent: false,
+  //     },
+  //   };
+  // }
+
   return {
-    props: { user },
+    props: { user: JSON.parse(JSON.stringify(user)) },
   };
 };
 
