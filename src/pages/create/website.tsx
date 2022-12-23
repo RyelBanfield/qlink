@@ -5,8 +5,15 @@ import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import {
+  BsEnvelope,
+  BsFacebook,
+  BsInstagram,
+  BsLinkedin,
+  BsTwitter,
+} from "react-icons/bs";
+import { CgWebsite } from "react-icons/cg";
 
-import CreateFormDisplay from "../../components/CreateFormDisplay";
 import { prisma } from "../../server/db/client";
 
 const WebsiteCreator: NextPage<{ user: User }> = ({ user }) => {
@@ -51,6 +58,12 @@ const WebsiteCreator: NextPage<{ user: User }> = ({ user }) => {
         image: website.image,
         name: website.name,
         theme: website.theme,
+        linkedWebsite: website.linkedWebsite,
+        linkedFacebook: website.linkedFacebook,
+        linkedInstagram: website.linkedInstagram,
+        linkedTwitter: website.linkedTwitter,
+        linkedLinkedin: website.linkedLinkedin,
+        linkedEmail: website.linkedEmail,
       }),
     })
       .then((res) => res.json())
@@ -61,13 +74,10 @@ const WebsiteCreator: NextPage<{ user: User }> = ({ user }) => {
   return (
     <>
       <div className="flex flex-grow flex-col rounded bg-neutral-100 p-6 sm:flex-row">
-        <CreateFormDisplay website={website} />
-
-        {/* Form */}
         <div className="flex w-full flex-grow flex-col sm:w-1/2">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="mx-12 flex flex-grow flex-col"
+            className="mx-12 mt-6 flex flex-grow flex-col"
           >
             <input
               type="file"
@@ -77,7 +87,7 @@ const WebsiteCreator: NextPage<{ user: User }> = ({ user }) => {
                   setWebsite(null);
                 },
               })}
-              className="mb-4 rounded border-2 border-gray-900 p-2 text-neutral-900"
+              className="mb-3 rounded border-2 border-gray-700 p-2 text-neutral-900"
             />
             <input
               type="text"
@@ -88,9 +98,9 @@ const WebsiteCreator: NextPage<{ user: User }> = ({ user }) => {
                   setWebsite(null);
                 },
               })}
-              className="mb-4 rounded border-2 border-gray-900 p-2 text-neutral-900"
+              className="mb-3 w-full rounded border p-2"
             />
-            <div className="mb-4 flex gap-2">
+            <div className="mb-3 flex gap-2">
               <input
                 type="radio"
                 id="light"
@@ -111,6 +121,92 @@ const WebsiteCreator: NextPage<{ user: User }> = ({ user }) => {
               />
               <label htmlFor="dark" className="text-neutral-900">
                 Dark
+              </label>
+            </div>
+
+            <div className="mb-3 text-neutral-900">
+              <label className="mb-3 flex items-center gap-2">
+                <CgWebsite className="mr-2 inline-block text-2xl" />
+                <input
+                  type="url"
+                  placeholder="Website"
+                  {...register("linkedWebsite", {
+                    onChange: () => {
+                      setWebsite(null);
+                    },
+                  })}
+                  className="w-full rounded border p-2"
+                />
+              </label>
+
+              <label className="mb-3 flex items-center gap-2">
+                <BsFacebook className="mr-2 inline-block text-2xl" />
+                <input
+                  type="url"
+                  placeholder="Facebook"
+                  {...register("linkedFacebook", {
+                    onChange: () => {
+                      setWebsite(null);
+                    },
+                  })}
+                  className="w-full rounded border p-2"
+                />
+              </label>
+
+              <label className="mb-3 flex items-center gap-2">
+                <BsInstagram className="mr-2 inline-block text-2xl" />
+                <input
+                  type="url"
+                  placeholder="Instagram"
+                  {...register("linkedInstagram", {
+                    onChange: () => {
+                      setWebsite(null);
+                    },
+                  })}
+                  className="w-full rounded border p-2"
+                />
+              </label>
+
+              <label className="mb-3 flex items-center gap-2">
+                <BsTwitter className="mr-2 inline-block text-2xl" />
+                <input
+                  type="url"
+                  placeholder="Twitter"
+                  {...register("linkedTwitter", {
+                    onChange: () => {
+                      setWebsite(null);
+                    },
+                  })}
+                  className="w-full rounded border p-2"
+                />
+              </label>
+
+              <label className="mb-3 flex items-center gap-2">
+                <BsLinkedin className="mr-2 inline-block text-2xl" />
+                <input
+                  type="url"
+                  placeholder="Linkedin"
+                  {...register("linkedLinkedin", {
+                    onChange: () => {
+                      setWebsite(null);
+                    },
+                  })}
+                  className="w-full rounded border p-2"
+                />
+              </label>
+
+              <label className="mb-3 flex items-center gap-2">
+                <BsEnvelope className="mr-2 inline-block text-2xl" />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  {...register("linkedEmail", {
+                    onChange: () => {
+                      setWebsite(null);
+                    },
+                  })}
+                  className="w-full rounded border p-2"
+                />
               </label>
             </div>
 
@@ -172,14 +268,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     },
   });
 
-  // if (user?.plan === "Beginner" && user.websites.length >= 1) {
-  //   return {
-  //     redirect: {
-  //       destination: "/websites",
-  //       permanent: false,
-  //     },
-  //   };
-  // }
+  if (user?.plan === "Beginner" && user.websites.length >= 1) {
+    return {
+      redirect: {
+        destination: "/websites",
+        permanent: false,
+      },
+    };
+  }
 
   return {
     props: { user: JSON.parse(JSON.stringify(user)) },
