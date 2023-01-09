@@ -2,7 +2,7 @@ import { Popover, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
   CursorArrowRaysIcon,
-  HomeIcon,
+  // HomeIcon,
   QrCodeIcon,
   UserIcon,
   XMarkIcon,
