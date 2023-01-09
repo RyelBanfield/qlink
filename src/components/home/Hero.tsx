@@ -25,19 +25,35 @@ const Hero = () => {
           </motion.button>
         )}
 
-        {status !== "loading" && session && (
-          <motion.button
-            whileTap={{ scale: 0.95 }}
-            className="w-full rounded bg-blue-800 p-2 text-center font-bold hover:bg-blue-600 sm:w-48"
-          >
-            <Link
-              href="/dashboard"
-              className="flex h-full w-full items-center justify-center"
+        <div className="flex gap-3">
+          {status !== "loading" && session && (
+            <motion.button
+              whileTap={{ scale: 0.95 }}
+              className="w-full rounded bg-blue-800 p-2 text-center font-bold hover:bg-blue-600 sm:w-48"
             >
-              Go to Dashboard
-            </Link>
-          </motion.button>
-        )}
+              <Link
+                href="/qr-codes"
+                className="flex h-full w-full items-center justify-center"
+              >
+                Go to QR Codes
+              </Link>
+            </motion.button>
+          )}
+
+          {status !== "loading" && session && (
+            <motion.button
+              whileTap={{ scale: 0.95 }}
+              className="w-full rounded bg-blue-800 p-2 text-center font-bold hover:bg-blue-600 sm:w-48"
+            >
+              <Link
+                href="/websites"
+                className="flex h-full w-full items-center justify-center"
+              >
+                Go to Websites
+              </Link>
+            </motion.button>
+          )}
+        </div>
       </div>
 
       <div className="relative mb-6 h-40 w-full sm:mb-0 sm:h-full sm:w-5/12">

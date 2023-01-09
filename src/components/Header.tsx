@@ -16,11 +16,11 @@ import { Fragment } from "react";
 import AuthButton from "./AuthButton";
 
 const pages = [
-  {
-    name: "Dashboard",
-    href: "/dashboard",
-    icon: HomeIcon,
-  },
+  // {
+  //   name: "Dashboard",
+  //   href: "/dashboard",
+  //   icon: HomeIcon,
+  // },
   {
     name: "QR Codes",
     href: "/qr-codes",
