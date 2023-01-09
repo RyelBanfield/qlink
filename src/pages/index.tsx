@@ -1,10 +1,9 @@
-import { GetServerSideProps, NextPage } from "next";
-import { getSession } from "next-auth/react";
+import { NextPage } from "next";
 
-import FAQ from "../components/FAQ";
-import Features from "../components/Features";
-import Pricing from "../components/Pricing";
-import Hero from "./../components/Hero";
+import FAQ from "../components/home/FAQ";
+import Features from "../components/home/Features";
+import Hero from "../components/home/Hero";
+import Pricing from "../components/home/Pricing";
 
 const Home: NextPage = () => {
   return (
@@ -15,23 +14,6 @@ const Home: NextPage = () => {
       <FAQ />
     </>
   );
-};
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getSession(context);
-
-  if (session) {
-    return {
-      redirect: {
-        destination: "/dashboard",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: { session },
-  };
 };
 
 export default Home;

@@ -1,12 +1,11 @@
 generator client {
-    provider        = "prisma-client-js"
-    previewFeatures = ["referentialIntegrity"]
+    provider = "prisma-client-js"
 }
 
 datasource db {
-    provider             = "mysql"
-    url                  = env("DATABASE_URL")
-    referentialIntegrity = "prisma"
+    provider     = "mysql"
+    url          = env("DATABASE_URL")
+    relationMode = "prisma"
 }
 
 model VerificationToken {
@@ -34,6 +33,7 @@ model Account {
     user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@unique([provider, providerAccountId])
+    @@index([userId])
 }
 
 model Session {
@@ -42,17 +42,44 @@ model Session {
     userId       String
     expires      DateTime
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@index([userId])
 }
 
 model QrCode {
-    id        String   @id @default(cuid())
-    userId    String
-    name      String
-    url       String
-    image     String   @db.Text
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    id          String   @id @default(cuid())
+    userId      String
+    name        String
+    url         String
+    image       String?  @db.Text
+    qrCodeImage String?  @db.Text
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@index([userId])
+}
+
+model Website {
+    id              String   @id @default(cuid())
+    userId          String
+    name            String   @unique
+    image           String   @db.Text
+    url             String   @unique
+    qrCode          String   @db.Text
+    createdAt       DateTime @default(now())
+    updatedAt       DateTime @updatedAt
+    user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    published       Boolean  @default(false)
+    theme           String   @default("light")
+    linkedWebsite   String
+    linkedFacebook  String
+    linkedInstagram String
+    linkedTwitter   String
+    linkedLinkedin  String
+    linkedEmail     String
+
+    @@index([userId])
 }
 
 model User {
@@ -66,5 +93,6 @@ model User {
     credits       Int       @default(0)
     plan          String    @default("Beginner")
     qrCodes       QrCode[]
+    websites      Website[]
     isAdmin       Boolean   @default(false)
 }
