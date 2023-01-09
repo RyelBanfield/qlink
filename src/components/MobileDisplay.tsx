@@ -62,7 +62,7 @@ const MobileDisplay = ({
 
       <h1 className="mb-6 font-bold">{website.name}</h1>
 
-      <div className="mb-6 flex w-full flex-col gap-2 px-6">
+      <div className="mb-6 flex w-full flex-col gap-3 px-6">
         {Object.entries(links).map(([key, value]) => {
           if (value) {
             return (
