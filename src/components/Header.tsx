@@ -1,7 +1,9 @@
 import { Popover, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
+  CursorArrowRaysIcon,
   HomeIcon,
+  QrCodeIcon,
   UserIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
@@ -14,10 +16,20 @@ import { Fragment } from "react";
 import AuthButton from "./AuthButton";
 
 const pages = [
+  // {
+  //   name: "Dashboard",
+  //   href: "/dashboard",
+  //   icon: HomeIcon,
+  // },
   {
-    name: "Dashboard",
-    href: "/dashboard",
-    icon: HomeIcon,
+    name: "QR Codes",
+    href: "/qr-codes",
+    icon: QrCodeIcon,
+  },
+  {
+    name: "Websites",
+    href: "/websites",
+    icon: CursorArrowRaysIcon,
   },
   {
     name: "Account",
@@ -57,8 +69,8 @@ const Header = () => {
                     href={page.href}
                     className={
                       activePage?.name === page.name
-                        ? "text-blue-700"
-                        : "text-neutral-100 hover:text-neutral-600"
+                        ? "flex h-full w-full items-center justify-center text-blue-700"
+                        : "flex h-full w-full items-center justify-center text-neutral-100 hover:text-neutral-600"
                     }
                   >
                     {page.name}
@@ -97,7 +109,7 @@ const Header = () => {
           <div className="divide-y-2 divide-neutral-50 rounded-lg bg-neutral-100 shadow-lg ring-1 ring-black ring-opacity-5">
             <div className="px-5 pt-5 pb-6">
               <div className="flex items-center justify-between">
-                <h1 className="font-semibold text-neutral-900">QLink</h1>
+                <p className="font-semibold text-neutral-900">QLink</p>
                 <div className="-mr-2">
                   <Popover.Button className="inline-flex items-center justify-center rounded p-2 text-neutral-900 hover:bg-neutral-100 hover:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-600">
                     <span className="sr-only">Close menu</span>

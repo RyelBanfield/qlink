@@ -24,8 +24,8 @@ const Features = () => {
       </h2>
       <ul className="grid gap-3 sm:grid-cols-3">
         <Item text="A fast and easy way to create, store & download QR codes" />
-        <Item text="A website to host all your social media links" />
-        <Item text="A discount for associates and more features to come" />
+        <Item text="A website to host all your social media links and more" />
+        <Item text="An affiliate program and more features to come" />
       </ul>
     </section>
   );

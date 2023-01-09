@@ -7,8 +7,8 @@ import { useRouter } from "next/router";
 import type { Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 
-import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Footer from "../components/home/Footer";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -22,12 +22,12 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <title>QLink</title>
         <meta
           name="description"
-          content="Create your own QR codes & websites to boost your business or idea."
+          content="Create your own QR codes & websites to share your business or socials."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
+      {!router.pathname.includes("/[name]") && <Header />}
       <motion.main
         key={router.route}
         initial="pageInitial"

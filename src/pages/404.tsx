@@ -12,10 +12,10 @@ const Custom404: NextPage = () => {
       </Head>
 
       <div className="flex flex-grow flex-col items-center justify-center">
-        <h2 className="mb-8 text-6xl font-extrabold">404</h2>
-        <p className="mb-8 text-2xl font-semibold md:text-3xl">
+        <p className="mb-8 text-6xl font-extrabold">404</p>
+        <h1 className="mb-8 text-2xl font-semibold md:text-3xl">
           Sorry, we couldn&apos;t find this page.
-        </p>
+        </h1>
         <Link href="/" className="w-40 rounded bg-blue-700 p-2 text-center">
           Back to homepage
         </Link>

@@ -12,8 +12,8 @@ const Account: NextPage<{ user: User }> = ({ user }) => {
         <p className="font-medium text-neutral-600">{user.email}</p>
       </div>
       <div className="mb-6 flex flex-col rounded bg-neutral-100 p-4">
-        <h2 className="text-2xl font-bold text-neutral-900">Plan</h2>
-        <p className="font-medium text-neutral-900">{user.plan}</p>
+        <h2 className="text-2xl font-bold text-neutral-900">Current Plan</h2>
+        <p className="font-medium text-neutral-600">{user.plan}</p>
       </div>
     </>
   );
