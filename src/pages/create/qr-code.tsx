@@ -46,8 +46,8 @@ const QRCreator: NextPage<{ user: User }> = ({ user }) => {
   };
 
   const onConfirm = (qrCode: Inputs) => {
-    const qrCodeCanvas = document.querySelector("canvas");
-    const qrCodeImage = qrCodeCanvas?.toDataURL("image/png");
+    const qrCodeCanvas = document.querySelector("canvas") as HTMLCanvasElement;
+    const qrCodeImage = qrCodeCanvas.toDataURL("image/png") as string;
 
     fetch("/api/qr-code/create", {
       method: "POST",
