@@ -98,7 +98,7 @@ const WebsiteCreator: NextPage<{ user: User }> = ({ user }) => {
                   setWebsite(null);
                 },
               })}
-              className="mb-3 w-full rounded border p-2"
+              className="mb-3 w-full rounded border p-2 text-neutral-900"
             />
             <div className="mb-3 flex gap-2">
               <input

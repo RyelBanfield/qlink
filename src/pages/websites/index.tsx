@@ -26,8 +26,7 @@ const Websites: NextPage<{ user: UserWithWebsites }> = ({ user }) => {
               Beginner Plan
             </h1>
             <p className="mb-6 text-center text-lg font-medium text-neutral-900">
-              You can create one website but would need to upgrade your plan to
-              publish it.
+              You can create one website with this plan.
             </p>
             <motion.button
               whileTap={{ scale: 0.95 }}

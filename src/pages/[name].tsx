@@ -126,7 +126,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const website = await prisma.website.findUnique({
     where: {
-      name: context.params?.name as string,
+      url: `https://qlink.tech/${context.params?.name as string}`,
     },
   });
 
