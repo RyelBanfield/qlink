@@ -61,7 +61,10 @@ const WebsiteCard = ({ website }: { website: Website }) => {
           className="h-12 w-full rounded bg-blue-700 text-center font-semibold"
         >
           <Link
-            href={`/${website.name}`}
+            href={`/${website.name
+              .toLowerCase()
+              .replace(/[^a-zA-Z0-9 ]/g, "")
+              .replace(/ /g, "-")}`}
             className="flex h-full w-full items-center justify-center"
           >
             View

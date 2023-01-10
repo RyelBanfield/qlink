@@ -70,6 +70,7 @@ const EditWebsite: NextPage<{ website: Website }> = ({ website }) => {
           }
         : null,
   });
+  const [showingConfirmation, setShowingConfirmation] = useState(false);
 
   const { register, handleSubmit } = useForm<Website>();
 
@@ -92,6 +93,21 @@ const EditWebsite: NextPage<{ website: Website }> = ({ website }) => {
     })
       .then((res) => res.json())
       .then(() => router.reload())
+      .catch((err) => console.log(err));
+  };
+
+  const handleDeleteWebsite = () => {
+    fetch("/api/website/delete", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: website.id,
+      }),
+    })
+      .then((res) => res.json())
+      .then(() => router.push("/websites"))
       .catch((err) => console.log(err));
   };
 
@@ -213,10 +229,43 @@ const EditWebsite: NextPage<{ website: Website }> = ({ website }) => {
             <motion.button
               type="submit"
               whileTap={{ scale: 0.95 }}
-              className="w-full rounded bg-blue-700 p-2 text-neutral-100"
+              className="mb-3 w-full rounded bg-blue-700 p-2 text-neutral-100"
             >
               Update
             </motion.button>
+
+            {!showingConfirmation && (
+              <motion.button
+                type="button"
+                onClick={() => setShowingConfirmation(true)}
+                whileTap={{ scale: 0.95 }}
+                className="w-full rounded bg-red-700 p-2 text-neutral-100"
+              >
+                Delete Website
+              </motion.button>
+            )}
+
+            {showingConfirmation && (
+              <div className="flex gap-3">
+                <motion.button
+                  type="button"
+                  onClick={() => handleDeleteWebsite()}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full rounded bg-red-700 p-2 text-neutral-100"
+                >
+                  Confirm Delete
+                </motion.button>
+
+                <motion.button
+                  type="button"
+                  onClick={() => setShowingConfirmation(false)}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full rounded bg-blue-700 p-2 text-neutral-100"
+                >
+                  Cancel
+                </motion.button>
+              </div>
+            )}
           </div>
         </form>
       </div>

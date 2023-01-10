@@ -20,7 +20,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         linkedEmail,
       } = req.body as Website;
 
-      const url = `http://localhost:3000/websites/${name
+      const url = `https://qlink.tech/${name
         .toLowerCase()
         .replace(/[^a-zA-Z0-9 ]/g, "")
         .replace(/ /g, "-")}`;
